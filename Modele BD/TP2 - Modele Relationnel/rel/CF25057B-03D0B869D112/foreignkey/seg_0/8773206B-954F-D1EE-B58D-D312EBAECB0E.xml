@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="8773206B-954F-D1EE-B58D-D312EBAECB0E" containerWithKeyObject="275B7E72-3B16-B3CA-A0BA-85C2D3819C57" localFKIndex="EF20322B-C8F4-B915-4155-7F0A0E953439" name="Reponses_Questions_FK">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:34:32 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>F449BB4A-C11E-2E68-D05D-40C92D9A5612</referredTableID>
+<keyObject>3448F8AB-51BD-50BB-6BB2-448A24805865</keyObject>
+<referredKeyID>3448F8AB-51BD-50BB-6BB2-448A24805865</referredKeyID>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
