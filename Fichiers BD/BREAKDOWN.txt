@@ -1,0 +1,61 @@
+-	--> Détails
+>	--> À implémenter
+--	--> Commentaires
+//	--> Commentaires (aussi)
+|	--> Fait
+X	--> Annulé
+
+====================================================
+
+- La table Joueurs est une table contenant les "profils des joueurs"
+- "Choisir" n'est pas dans la table Categories
+
+X> Contrainte CHECK sur Categories : (couleur NOT LIKE "%blanc%")
+> Insérer une vingtaine de questions par catégorie
+
+|> TRIGGER BEFORE INSERT OR UPDATE ON Reponses : (1 bonne réponse max par question)
+|> TRIGGER BEFORE INSERT OR UPDATE ON Reponses : (4 reponses max par question)
+|> TRIGGER BEFORE DELETE ON Joueurs : SupprCascadeJoueur(sur Scores)
+
+------PACKAGE GestionJoueurs
+-- Remet tout les scores de la table Score à 0
+> PROCEDURE ResetScores()
+-- Incrémente le score d'un joueur pour une catégorie
+> PROCEDURE IncrScore(codeCategorie, aliasJoueur)
+-- Insertion d'un nouveau joueur
+> PROCEDURE InsertJoueur(...)
+-- Suppression d'un joueur
+> PROCEDURE SupprJoueur(aliasJoueur)
+
+------PACKAGE GestionQuestions
+-- Insertion d'une nouvelle question
+> PROCEDURE InsertQuestion(...)
+-- Insertion d'une nouvelle reponse
+> PROCEDURE InsertReponse(...)
+-- Remet le flag repondu de toute les questions à faux
+> PROCEDURE ResetQuestionsRepondues()
+-- Set le flag repondu d'une question
+> PROCEDURE SetRepondue(numQuestion, nouvRepondu)
+-- Retourne une question au hasard d'une catégorie dont le flag repondu est faux
+> FUNCTION GetQuestionHasard(codeCategorie) // To handle : No unanswered questions left
+-- Retourne toute les réponses associées à une question
+> FUNCTION GetReponses(numQuestion)
+
+------PACKAGE Statistiques
+-- Retourne les scores d'un joueur pour chaque catégories
+> FUNCTION GetScoresJoueur(aliasJoueur)
+-- Retourne les données suivantes : nom du joueur, prenom du joueur, les catégories qu'il a gagné
+> FUNCTION GetCategoriesGagnees(aliasJoueur)
+-- Retourne la catégorie la plus faible d'un joueur
+> FUNCTION GetCategorieFaible(aliasJoueur)
+
+====================================================
+
+L’application doit permettre d’afficher pour chaque joueur (Alias) les différentes
+catégories (nomCatégorie) qu’il a gagnées. De même pour chaque joueur les
+différentes catégories qu’il n’a pas gagnées (qui lui reste pour gagner la partie)
+
+Vous devez être en mesure d’ajouter et de supprimer un joueur.
+
+Vous devez être en mesure d’ajouter des questions avec leurs réponses pour une
+catégorie donnée. (Admin)
