@@ -25,7 +25,7 @@ FOR EACH ROW
 DECLARE
     nbBonneReponses Number;
 BEGIN
-    SELECT COUNT(numReponse) INTO nbBonneReponses FROM Reponses WHERE numQuestion = :NEW.numQuestion;
+    SELECT COUNT(numReponse) INTO nbBonneReponses FROM Reponses WHERE numQuestion = :NEW.numQuestion AND estbonne = 'Y';
     IF nbBonneReponses > 0 THEN
         RAISE_APPLICATION_ERROR(-20000, 'Une question ne peut pas avoir plusieurs bonnes reponses');
     END IF;
