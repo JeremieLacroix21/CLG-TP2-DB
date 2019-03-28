@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E63ED53E-E5C0-26FD-8979-F3BB113F9BC2" containerWithKeyObject="C44EFBA2-3AAA-E415-7AB4-7398CE729A63" localFKIndex="17E0BF4B-496B-414A-F83F-EB6EE022891B" name="Scores_Joueurs_FK">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:39:45 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>7B85E583-7107-FD86-5EA7-3EECC5C7EA2D</referredTableID>
+<keyObject>84DB0F5D-E1DA-7103-436D-C34072419D5A</keyObject>
+<referredKeyID>84DB0F5D-E1DA-7103-436D-C34072419D5A</referredKeyID>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

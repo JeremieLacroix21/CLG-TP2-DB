@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C44EFBA2-3AAA-E415-7AB4-7398CE729A63" name="Scores">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:35:50 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="codeCategorie" id="F794C788-EDE0-1950-8CF6-BFFE65C40C66">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:36:47 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="66E35CCC-1533-35B4-B15F-51A21943D73D" referredColumn="B5B418AF-D4B7-A55F-3ABF-D9741E88CF7D"/>
+</associations>
+</Column>
+<Column name="aliasJoueur" id="3339221E-E6A2-DC19-E34D-5B864789B81B">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:38:17 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E63ED53E-E5C0-26FD-8979-F3BB113F9BC2" referredColumn="53796020-7275-5589-1696-B489C12D79A7"/>
+</associations>
+</Column>
+<Column name="score" id="CD31154C-A1EF-8552-D01A-54F9396C3011">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:41:43 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3CE8B4EC-3480-2D0E-AE2B-EA72CDE1B98A" name="Score_PK">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:36:47 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F794C788-EDE0-1950-8CF6-BFFE65C40C66"/>
+<colUsage columnID="3339221E-E6A2-DC19-E34D-5B864789B81B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DCCFBE90-1FF8-5295-A119-074BA2B19583" name="Score_Categories_FK">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:39:37 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F794C788-EDE0-1950-8CF6-BFFE65C40C66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="17E0BF4B-496B-414A-F83F-EB6EE022891B" name="Scores_Joueurs_FK">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:39:45 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3339221E-E6A2-DC19-E34D-5B864789B81B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -7,3 +7,15 @@ C:\Users\Jérémie\source\repos\TP2_Base_de_données\TP2_Base_de_données\obj\De
 C:\Users\Jérémie\source\repos\TP2_Base_de_données\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.csproj.CoreCompileInputs.cache
 C:\Users\Jérémie\source\repos\TP2_Base_de_données\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.exe
 C:\Users\Jérémie\source\repos\TP2_Base_de_données\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.pdb
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\bin\Debug\TP2_Base_de_données.exe.config
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\bin\Debug\TP2_Base_de_données.exe
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\bin\Debug\TP2_Base_de_données.pdb
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.csprojAssemblyReference.cache
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.Main.resources
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.Nomjoueurs.resources
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.Properties.Resources.resources
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.Start.resources
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.csproj.GenerateResource.cache
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.csproj.CoreCompileInputs.cache
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.exe
+C:\Users\Jérémie\Documents\GitHub\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.pdb

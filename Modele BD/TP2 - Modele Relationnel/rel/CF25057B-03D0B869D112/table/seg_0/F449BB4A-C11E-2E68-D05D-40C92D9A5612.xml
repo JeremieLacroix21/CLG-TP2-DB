@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F449BB4A-C11E-2E68-D05D-40C92D9A5612" name="Questions">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:27:54 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="numQuestion" id="551C7F38-094B-F9E6-797B-0AD67415617B">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:29:39 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>20</dataTypePrecision>
+<ownDataTypeParameters>,20,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="enonce" id="99EC4F71-97A0-6235-7378-944A88D7DA3B">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:29:39 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="repondu" id="896913A1-3433-8E1A-634F-49F4B877DE46">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:31:26 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="codeCategorie" id="8DE72626-F4AC-8AA6-3C02-4A7EEF9B8B80">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:31:47 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B4C8FFDC-0B7B-C5D0-D276-A173AE14DA96" referredColumn="B5B418AF-D4B7-A55F-3ABF-D9741E88CF7D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3448F8AB-51BD-50BB-6BB2-448A24805865" name="Questions_PK">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:29:39 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="551C7F38-094B-F9E6-797B-0AD67415617B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CBF3B6EB-146B-6A84-DA06-D552D9D876D8" name="Questions_Categories_FK">
+<createdBy>201732860</createdBy>
+<createdTime>2019-03-27 18:31:58 UTC</createdTime>
+<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DE72626-F4AC-8AA6-3C02-4A7EEF9B8B80"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
