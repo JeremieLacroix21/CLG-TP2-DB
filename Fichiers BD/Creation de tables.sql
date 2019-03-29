@@ -43,11 +43,12 @@ ALTER TABLE reponses ADD CONSTRAINT CK_estbonne CHECK(estbonne IN('Y', 'N'));
 CREATE TABLE scores (
     codecategorie   CHAR(1) NOT NULL,
     aliasjoueur     VARCHAR2(20) NOT NULL,
-    score           NUMBER(5)
+    score           NUMBER(5),
+    gagnee          CHAR(1)
 );
 
-ALTER TABLE scores ADD CONSTRAINT score_pk PRIMARY KEY ( codecategorie,
-                                                         aliasjoueur );
+ALTER TABLE scores ADD CONSTRAINT score_pk PRIMARY KEY ( codecategorie, aliasjoueur );
+ALTER TABLE scores ADD CONSTRAINT CK_gagnee CHECK(gagnee IN('Y', 'N'));
 
 ALTER TABLE questions
     ADD CONSTRAINT questions_categories_fk FOREIGN KEY ( codecategorie )
@@ -64,9 +65,3 @@ ALTER TABLE scores
 ALTER TABLE scores
     ADD CONSTRAINT scores_joueurs_fk FOREIGN KEY ( aliasjoueur )
         REFERENCES joueurs ( aliasjoueur );
-        
---GRANT ALL ON Categories TO lacroixj;
---GRANT ALL ON questions TO lacroixj;
---GRANT ALL ON reponses TO lacroixj;
---GRANT ALL ON scores TO lacroixj;
---GRANT ALL ON joueurs TO lacroixj;
