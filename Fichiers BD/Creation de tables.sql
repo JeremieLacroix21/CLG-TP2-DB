@@ -1,4 +1,4 @@
---     Noms : Gabriel Fournier-Cloutier & J�r�mie Lacroix
+--     Noms : Gabriel Fournier-Cloutier & Jérémie Lacroix
 --    Date : 2019-03-29
 --  Groupe : 02
 -- Fichier : Creation de tables
@@ -17,6 +17,7 @@ CREATE SEQUENCE SEQ_M_NUMQUESTION MINVALUE 1 MAXVALUE 99999999999999999999999999
 CREATE TABLE categories (
     codecategorie   CHAR(1) NOT NULL,
     nom             VARCHAR2(30),
+    -- Valeur RGB ou HEX de couleur
     couleur         VARCHAR2(20)
 );
 
@@ -33,6 +34,7 @@ ALTER TABLE joueurs ADD CONSTRAINT joueurs_pk PRIMARY KEY ( aliasjoueur );
 CREATE TABLE questions (
     numquestion     CHAR(6) NOT NULL,
     enonce          CLOB,
+    -- Indique si un joueur à correctement répondu à la question (dans la partie en cours)
     repondu         CHAR(1),
     codecategorie   CHAR(1) NOT NULL
 );
@@ -53,7 +55,9 @@ ALTER TABLE reponses ADD CONSTRAINT CK_estbonne CHECK(estbonne IN('Y', 'N'));
 CREATE TABLE scores (
     codecategorie   CHAR(1) NOT NULL,
     aliasjoueur     VARCHAR2(20) NOT NULL,
+    -- Indique le nombre de fois que le joueur à gagné dans une certaine catégories (dans toutes les parties)
     score           NUMBER(5),
+    -- Indique si le joueur à gagné dans cette catégorie (dans la partie en cours)
     gagnee          CHAR(1)
 );
 
