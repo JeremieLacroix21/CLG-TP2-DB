@@ -3,6 +3,7 @@
 --  Groupe : 02
 -- Fichier : Creation de tables
 --------------------------------------
+-- À NE PAS OUBLIER : DROP TABLE = Détruire les triggers aussi
 --DROP TABLE CATEGORIES CASCADE CONSTRAINTS;
 --DROP TABLE joueurs CASCADE CONSTRAINTS;
 --DROP TABLE reponses CASCADE CONSTRAINTS;
