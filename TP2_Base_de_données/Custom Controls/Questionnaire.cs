@@ -20,18 +20,25 @@ namespace TP2_Base_de_données.Custom_Controls
         /// <summary>Se produit quand le bouton Répondre est cliqué</summary>
         public event EventHandler RespondClicked;
 
+        public Questionnaire()
+        {
+            InitializeComponent();
+        }
+
         public Questionnaire(Question aRepondre)
         {
             InitializeComponent();
 
             _Question = aRepondre;
-            Choisie = null;
         }
         private void Questionnaire_Load(object sender, EventArgs e)
         {
             Choisie = null;
 
-            InitQuestionnaire();
+            if (_Question != null)
+            {
+                InitQuestionnaire();
+            }
         }
 
         private void InitQuestionnaire()
