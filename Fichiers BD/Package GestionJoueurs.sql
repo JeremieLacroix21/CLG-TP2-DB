@@ -1,4 +1,4 @@
---     Noms : Gabriel Fournier-Cloutier & Jérémie Lacroix
+--     Noms : Gabriel Fournier-Cloutier & JÃ©rÃ©mie Lacroix
 --    Date : 2019-03-29
 --  Groupe : 02
 -- Fichier : Package GestionJoueurs
@@ -22,6 +22,9 @@ create or replace PACKAGE GESTIONJOUEURS AS
     (
         P_aliasJoueur Joueurs.aliasJoueur%TYPE
     );
+    
+    -- Retourne tous les enregistrements de la table Joueurs
+    FUNCTION GetTousJoueurs RETURN ENR_JOUEUR;
     
 END GESTIONJOUEURS;
 
@@ -47,5 +50,13 @@ create or replace PACKAGE BODY GESTIONJOUEURS AS
   BEGIN
     DELETE Joueurs WHERE aliasJoueur = P_aliasJoueur;
   END SupprJoueur;
+
+  FUNCTION GetTousJoueurs RETURN ENR_JOUEUR AS
+    resultat ENR_JOUEUR;
+  BEGIN
+    OPEN resultat FOR SELECT * FROM Joueurs;
+    RETURN resultat;
+    CLOSE resultat;
+  END GetTousJoueurs;
 
 END GESTIONJOUEURS;
