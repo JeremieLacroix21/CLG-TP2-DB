@@ -1,4 +1,4 @@
---     Noms : Gabriel Fournier-Cloutier & Jérémie Lacroix
+--     Noms : Gabriel Fournier-Cloutier & JÃ©rÃ©mie Lacroix
 --    Date : 2019-03-29
 --  Groupe : 02
 -- Fichier : Package Statistiques
@@ -10,33 +10,33 @@ create or replace PACKAGE STATISTIQUES AS
     TYPE ENR_SCORE IS REF CURSOR;
     TYPE ENR_CATEGORIE IS REF CURSOR;
     
-    -- Incrémente le score d'un joueur pour une catégorie et met le flag gagnee à true
+    -- IncrÃ©mente le score d'un joueur pour une catÃ©gorie et met le flag gagnee Ã  true
     PROCEDURE IncrScore
     (
         P_codeCategorie Categories.codeCategorie%TYPE,
         P_aliasJoueur Joueurs.aliasJoueur%TYPE
     );
     
-    -- Remet le flag gagnee pour chaque catégorie pour chaque joueur à false
+    -- Remet le flag gagnee pour chaque catÃ©gorie pour chaque joueur Ã  false
     PROCEDURE ResetCategoriesGagnee;
     
-    -- Retourne les scores d'un joueur pour chaque catégories
+    -- Retourne les scores d'un joueur pour chaque catÃ©gories
     FUNCTION GetScoresJoueur
     (
         P_aliasJoueur Joueurs.aliasJoueur%TYPE
     ) RETURN ENR_SCORE;
     
-    -- Retourne les données suivantes : nom du joueur, prenom du joueur, les noms des catégories qu'il a gagné
+    -- Retourne les donnÃ©es suivantes : nom du joueur, prenom du joueur, les noms des catÃ©gories qu'il a gagnÃ©
     FUNCTION GetCategoriesGagnees
     (
         P_aliasJoueur Joueurs.aliasJoueur%TYPE
     ) RETURN ENR_CATEGORIE;
     
-    -- Retourne la catégorie la plus faible d'un joueur
+    -- Retourne la catÃ©gorie la plus faible d'un joueur
     FUNCTION GetCategorieFaible
     (
         P_aliasJoueur Joueurs.aliasJoueur%TYPE
-    ) RETURN ENR_CATEGORIE;
+    ) RETURN Categories.codeCategorie%TYPE;
     
 END STATISTIQUES;
 
@@ -93,14 +93,13 @@ create or replace PACKAGE BODY STATISTIQUES AS
   FUNCTION GetCategorieFaible
     (
         P_aliasJoueur Joueurs.aliasJoueur%TYPE
-    ) RETURN ENR_CATEGORIE AS
-    resultat ENR_CATEGORIE;
+    ) RETURN Categories.codeCategorie%TYPE AS
+    resultat Categories.codeCategorie%TYPE;
     scoreMin Number;
   BEGIN
     SELECT MIN(score) INTO scoreMin FROM Scores WHERE P_aliasJoueur = aliasJoueur;
-    OPEN resultat FOR SELECT * FROM Scores WHERE score = scoreMin;
+    SELECT codeCategorie INTO resultat FROM Scores WHERE score = scoreMin;
     RETURN resultat;
-    CLOSE resultat;
   END GetCategorieFaible;
 
 END STATISTIQUES;
