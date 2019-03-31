@@ -5,13 +5,78 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
-namespace TP2_Base_de_données.Objets_BD
+namespace Objets_BD
 {
-    public class Joueur
+    public class Joueur : IComparable<Joueur>
     {
+        private Dictionary<Categorie, int> Pointage { get; set; }
+
         public string AliasJoueur { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
+        /// <summary>Est lancé quand un des pointage du joueur est modifié</summary>
+        public EventHandler PointageChange { get; set; }
+        
+        public Joueur()
+        {
+            Pointage = new Dictionary<Categorie, int>();
+        }
+
+        public int CalculerPointageTotal()
+        {
+            int total = 0;
+            foreach(var pair in Pointage)
+            {
+                total += pair.Value;
+            }
+            return total;
+        }
+
+        public static int CalculerPointageTotal(List<Joueur> joueurs)
+        {
+            int total = 0;
+            foreach (var joueur in joueurs)
+            {
+                total += joueur.CalculerPointageTotal();
+            }
+            return total;
+        }
+
+        public void AjouterPointage(Categorie seraAssociee, int pointageInitial)
+        {
+            Pointage.Add(seraAssociee, pointageInitial);
+        }
+
+        /// <summary>Retourne un pointage associé à une certaine catégorie</summary>
+        public int this[Categorie key]
+        {
+            get { return Pointage[key]; }
+            set
+            {
+                if (value <= Categorie.GAGNER_NBPOINTS)
+                {
+                    Pointage[key] = value;
+                    PointageChange?.Invoke(this, new EventArgs());
+                }
+                else
+                {
+                    MessageBox.Show(this.AliasJoueur + " ne peut pas gagner plus de points en " + key.Nom);
+                }
+            }
+        }
+
+        public int CompareTo(Joueur compareJoueur)
+        {
+            if (compareJoueur == null)
+                return 1;
+            else
+                return -this.CalculerPointageTotal().CompareTo(compareJoueur.CalculerPointageTotal());
+        }
+
+        public override string ToString()
+        {
+            return AliasJoueur;
+        }
 
         /// <summary>
         /// Incrémente le score du joueur pour une catégorie et met le flag gagnee à true dans la base de donnée

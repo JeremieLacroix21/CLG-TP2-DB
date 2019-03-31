@@ -34,3 +34,6 @@ C:\Users\Nous\source\repos\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_donné
 C:\Users\Nous\source\repos\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.csproj.CopyComplete
 C:\Users\Nous\source\repos\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.exe
 C:\Users\Nous\source\repos\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.pdb
+C:\Users\Nous\source\repos\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.Jeu.resources
+C:\Users\Nous\source\repos\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.Custom_Controls.ItemListeJoueur.resources
+C:\Users\Nous\source\repos\TP2\TP2_Base_de_données\obj\Debug\TP2_Base_de_données.Custom_Controls.ListeJoueur.resources

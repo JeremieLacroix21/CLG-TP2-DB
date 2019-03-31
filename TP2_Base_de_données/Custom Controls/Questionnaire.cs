@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TP2_Base_de_données.Objets_BD;
+using Objets_BD;
 
 namespace TP2_Base_de_données.Custom_Controls
 {

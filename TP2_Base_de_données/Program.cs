@@ -16,7 +16,7 @@ namespace TP2_Base_de_données
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Répondre());
+            Application.Run(new Jeu());
         }
     }
 }

@@ -6,10 +6,13 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TP2_Base_de_données.Objets_BD
+namespace Objets_BD
 {
     public class Categorie
     {
+        /// <summary>Le nombre de points nécessaires pour gagner une catégorie</summary>
+        public const int GAGNER_NBPOINTS = 5;
+
         public string CodeCategorie { get; set; }
         public string Nom { get; set; }
         public Color Couleur { get; set; }
@@ -40,7 +43,7 @@ namespace TP2_Base_de_données.Objets_BD
 
             try
             {
-                OracleCommand command = new OracleCommand("GESTIONJOUEURS.GetTousJoueurs", DBGlobal.Connexion);
+                OracleCommand command = new OracleCommand("GESTIONCATEGORIES.GetToutesCategories", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("resultat", OracleDbType.RefCursor, ParameterDirection.ReturnValue)

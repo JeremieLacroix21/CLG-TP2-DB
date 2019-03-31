@@ -49,6 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom Controls\ItemListeJoueur.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\ItemListeJoueur.Designer.cs">
+      <DependentUpon>ItemListeJoueur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\ListeJoueur.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\ListeJoueur.Designer.cs">
+      <DependentUpon>ListeJoueur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom Controls\Questionnaire.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,7 +70,14 @@
     <Compile Include="Custom Controls\WaitSplash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Global.cs" />
+    <Compile Include="Global\ExtensionsUtils.cs" />
+    <Compile Include="Global\DBGlobal.cs" />
+    <Compile Include="Jeu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Jeu.Designer.cs">
+      <DependentUpon>Jeu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nomjoueurs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,8 +109,17 @@
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
     <Compile Include="ValidationProvider.cs" />
+    <EmbeddedResource Include="Custom Controls\ItemListeJoueur.resx">
+      <DependentUpon>ItemListeJoueur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Controls\ListeJoueur.resx">
+      <DependentUpon>ListeJoueur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\Questionnaire.resx">
       <DependentUpon>Questionnaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Jeu.resx">
+      <DependentUpon>Jeu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

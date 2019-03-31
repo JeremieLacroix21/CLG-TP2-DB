@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-namespace TP2_Base_de_données.Objets_BD
+namespace Objets_BD
 {
     public class Reponse
     {
