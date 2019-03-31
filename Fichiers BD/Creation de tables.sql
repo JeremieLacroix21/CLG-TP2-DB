@@ -18,7 +18,6 @@ CREATE SEQUENCE SEQ_M_NUMQUESTION MINVALUE 1 MAXVALUE 99999999999999999999999999
 CREATE TABLE categories (
     codecategorie   CHAR(1) NOT NULL,
     nom             VARCHAR2(30),
-    -- Valeur RGB ou HEX de couleur
     couleur         VARCHAR2(20)
 );
 
