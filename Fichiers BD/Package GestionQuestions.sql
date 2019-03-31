@@ -1,4 +1,4 @@
---     Noms : Gabriel Fournier-Cloutier & JÈrÈmie Lacroix
+--     Noms : Gabriel Fournier-Cloutier & J√©r√©mie Lacroix
 --    Date : 2019-03-29
 --  Groupe : 02
 -- Fichier : Package GestionQuestions
@@ -10,14 +10,6 @@ create or replace PACKAGE GESTIONQUESTIONS AS
     TYPE ENR_QUESTION IS REF CURSOR;
     TYPE ENR_REPONSE IS REF CURSOR;
     
-    -- Insertion d'une nouvelle question
-    PROCEDURE InsertQuestion
-    (
-        P_enonce Questions.enonce%TYPE,
-        P_repondu Questions.repondu%TYPE,
-        P_codeCategorie Categories.codeCategorie%TYPE
-    );
-    
     -- Insertion d'une nouvelle reponse
     PROCEDURE InsertReponse
     (
@@ -27,7 +19,7 @@ create or replace PACKAGE GESTIONQUESTIONS AS
         P_numQuestion Questions.numQuestion%TYPE
     );
     
-    -- Remet le flag repondu de toute les questions ‡ faux
+    -- Remet le flag repondu de toute les questions √† faux
     PROCEDURE ResetQuestionsRepondues;
     
     -- Set le flag repondu d'une question
@@ -37,13 +29,20 @@ create or replace PACKAGE GESTIONQUESTIONS AS
         P_nouvRepondu Questions.repondu%TYPE
     );
     
-    -- Retourne une question au hasard d'une catÈgorie dont le flag repondu est faux
+    -- Insertion d'une nouvelle question (retourne l'ID attribu√©)
+    FUNCTION InsertQuestion
+    (
+        P_enonce Questions.enonce%TYPE,
+        P_codeCategorie Categories.codeCategorie%TYPE
+    ) RETURN Questions.numQuestion%TYPE;
+    
+    -- Retourne une question d'une cat√©gorie au hasard dont le flag repondu est faux
     FUNCTION GetQuestionHasard
     (
         P_codeCategorie Categories.codeCategorie%TYPE
     ) RETURN ENR_QUESTION;
     
-    -- Retourne toute les rÈponses associÈes ‡ une question
+    -- Retourne toute les r√©ponses associ√©es √† une question
     FUNCTION GetReponses
     (
         P_numQuestion Questions.numQuestion%TYPE
@@ -61,28 +60,6 @@ END GESTIONQUESTIONS;
 -- BODY PACKAGE
 --------------------
 create or replace PACKAGE BODY GESTIONQUESTIONS AS
-
-  PROCEDURE InsertQuestion
-    (
-        P_enonce Questions.enonce%TYPE,
-        P_repondu Questions.repondu%TYPE,
-        P_codeCategorie Categories.codeCategorie%TYPE
-    ) AS
-    seqNumQuestion Questions.numQuestion%TYPE;
-  BEGIN
-    IF P_codeCategorie = 'V' THEN -- Histoire
-        SELECT SEQ_V_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
-    ELSIF P_codeCategorie = 'B' THEN -- Geographie
-        SELECT SEQ_B_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
-    ELSIF P_codeCategorie = 'O' THEN -- Sport
-        SELECT SEQ_O_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
-    ELSIF P_codeCategorie = 'M' THEN -- Art - Culture
-        SELECT SEQ_M_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
-    ELSE
-        RAISE_APPLICATION_ERROR(-20002, 'Categorie invalide');
-    END IF;
-    INSERT INTO Questions VALUES(P_codeCategorie||seqNumQuestion, P_enonce, P_repondu, P_codeCategorie);    
-  END InsertQuestion;
 
   PROCEDURE InsertReponse
     (
@@ -108,6 +85,30 @@ create or replace PACKAGE BODY GESTIONQUESTIONS AS
   BEGIN
     UPDATE Questions SET repondu = P_nouvRepondu WHERE numQuestion = P_numQuestion;
   END SetRepondu;
+
+  FUNCTION InsertQuestion
+    (
+        P_enonce Questions.enonce%TYPE,
+        P_codeCategorie Categories.codeCategorie%TYPE
+    ) RETURN Questions.numQuestion%TYPE AS
+    resultat Questions.numQuestion%TYPE;
+    seqNumQuestion Questions.numQuestion%TYPE;
+  BEGIN
+    IF P_codeCategorie = 'V' THEN -- Histoire
+        SELECT SEQ_V_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
+    ELSIF P_codeCategorie = 'B' THEN -- Geographie
+        SELECT SEQ_B_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
+    ELSIF P_codeCategorie = 'O' THEN -- Sport
+        SELECT SEQ_O_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
+    ELSIF P_codeCategorie = 'M' THEN -- Art - Culture
+        SELECT SEQ_M_numQuestion.NEXTVAL INTO seqNumQuestion FROM Dual;
+    ELSE
+        RAISE_APPLICATION_ERROR(-20002, 'Categorie invalide');
+    END IF;
+    resultat := P_codeCategorie||seqNumQuestion;
+    INSERT INTO Questions VALUES(resultat, P_enonce, 'N', P_codeCategorie);
+    RETURN resultat;
+  END InsertQuestion;
 
   FUNCTION GetQuestionHasard
     (
