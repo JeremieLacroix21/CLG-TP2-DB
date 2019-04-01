@@ -72,7 +72,7 @@ namespace TP2_Base_de_données
             DBGlobal.OuvrirConnexion(this);
             Participants = DBGlobal.Joueurs;
 
-            new Question() { Categorie = DBGlobal.Categories[0], Enonce = "Lol ça marche" }.Ajouter();
+            new Question() { Categorie = DBGlobal.Categories[0], Enonce = "Lol ça marche" }
 
             // Initialiser tout
             InitTimers();

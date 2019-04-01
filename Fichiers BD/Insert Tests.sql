@@ -17,7 +17,7 @@ CREATE SEQUENCE SEQ_M_NUMQUESTION MINVALUE 1 MAXVALUE 99999999999999999999999999
 DELETE Reponses;
 DELETE Questions;
 
-VARIABLE OUT num CHAR(6);
+VARIABLE OUT num Char(6);
 
 EXECUTE GestionQuestions.InsertQuestion(:num, 'Sport : Repondre A', 'O');
 EXECUTE GestionQuestions.InsertReponse(TRIM(:num)||'A', 'oui', 'Y', :num);

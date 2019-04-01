@@ -106,6 +106,7 @@ namespace Objets_BD
 
                 foreach (var reponse in this.Reponses)
                 {
+                    reponse.NumReponse = this.NumQuestion + reponse.NumReponse;
                     reponse.Ajouter();
                 }
             }
