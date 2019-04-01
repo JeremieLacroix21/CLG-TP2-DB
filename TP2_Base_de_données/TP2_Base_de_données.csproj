@@ -85,30 +85,12 @@
     <Compile Include="Jeu.Designer.cs">
       <DependentUpon>Jeu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nomjoueurs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nomjoueurs.Designer.cs">
-      <DependentUpon>Nomjoueurs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
     <Compile Include="Objets BD\Categorie.cs" />
     <Compile Include="Objets BD\Joueur.cs" />
     <Compile Include="Objets BD\Question.cs" />
     <Compile Include="Objets BD\Reponse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Répondre.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Répondre.Designer.cs">
-      <DependentUpon>Répondre.cs</DependentUpon>
-    </Compile>
     <Compile Include="Start.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,12 +113,6 @@
     <EmbeddedResource Include="Jeu.resx">
       <DependentUpon>Jeu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Nomjoueurs.resx">
-      <DependentUpon>Nomjoueurs.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -146,9 +122,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Répondre.resx">
-      <DependentUpon>Répondre.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
