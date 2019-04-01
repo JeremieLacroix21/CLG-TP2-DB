@@ -18,6 +18,8 @@ namespace Objets_BD
         /// Ajoute la réponse à la base de donnée
         /// </summary>
         /// <exception cref="ArgumentException">Certaines propriétés de la réponse sont null</exception>
+        // TODO : InsertReponse() a été changé dans la BD, Ajouter() est à modifier pour prendre en compte ces changements
+        [Obsolete("InsertReponse() a été changé dans la BD, Ajouter() est à modifier pour prendre en compte ces changements", true)]
         public void Ajouter()
         {
             // Vérifier que toute les propriétés de la réponse sont valide
