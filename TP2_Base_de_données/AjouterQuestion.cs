@@ -94,7 +94,7 @@ namespace TP2_Base_de_données
         private void BTN_Ajouter_Click(object sender, EventArgs e)
         {
             Question newq = new Question();
-            newq.Categorie = DBGlobal.Categories[0];
+            newq.Categorie = DBGlobal.Categories[1];
             newq.Enonce = RTBX_Question.Text;
             Reponse[] Tab = new Reponse[4];
             Tab[0] =new Reponse { Description = RTBX_A_Reponse.Text, EstBonne = RBTN_A_Reponse.Checked, NumReponse = "A",Question = newq};
@@ -105,8 +105,6 @@ namespace TP2_Base_de_données
 
 
             newq.Ajouter();
-
-            Close();
         }
     }
 }
