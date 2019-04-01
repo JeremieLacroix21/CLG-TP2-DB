@@ -83,8 +83,6 @@ namespace Objets_BD
         /// Ajoute la question à la base de donnée (<see cref="NumQuestion"/> sera changé par un ID unique attribué par la base de donnée)
         /// </summary>
         /// <exception cref="ArgumentException">Certaines propriétés de la question sont null</exception>
-        // TODO : InsertQuestion() a été changé dans la BD, Ajouter() est à modifier pour prendre en compte ces changements
-        [Obsolete("InsertQuestion() a été changé dans la BD, Ajouter() est à modifier pour prendre en compte ces changements", true)]
         public void Ajouter()
         {
             // Vérifier que toute les propriétés de la question sont valide
@@ -95,21 +93,18 @@ namespace Objets_BD
 
             try
             {
-                //
                 OracleCommand command = new OracleCommand("GESTIONQUESTIONS.InsertQuestion", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
-                    new OracleParameter("resultat", OracleDbType.Varchar2, ParameterDirection.ReturnValue),
+                    new OracleParameter("P_numQuestion", OracleDbType.Char, 6, ParameterDirection.InputOutput),
                     new OracleParameter("P_enonce", OracleDbType.Varchar2, this.Enonce, ParameterDirection.Input),
-                    new OracleParameter("P_codeCategorie", OracleDbType.Varchar2, this.Categorie.CodeCategorie, ParameterDirection.Input)
+                    new OracleParameter("P_codeCategorie", OracleDbType.Char, 1, this.Categorie.CodeCategorie, ParameterDirection.Input)
                 );
 
-                OracleDataReader reader = command.ExecuteReader();
-                reader.Read();
-                this.NumQuestion = reader.GetString(0);
-                reader.Close();
+                command.ExecuteNonQuery();
+                this.NumQuestion = command.Parameters["P_numQuestion"].Value.ToString();
 
-                foreach(var reponse in this.Reponses)
+                foreach (var reponse in this.Reponses)
                 {
                     reponse.Ajouter();
                 }

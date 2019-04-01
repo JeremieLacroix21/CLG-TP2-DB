@@ -71,6 +71,9 @@ namespace TP2_Base_de_données
             // TODO : Migrer ces instructions vers le form Start
             DBGlobal.OuvrirConnexion(this);
             Participants = DBGlobal.Joueurs;
+
+            new Question() { Categorie = DBGlobal.Categories[0], Enonce = "Lol ça marche" }.Ajouter();
+
             // Initialiser tout
             InitTimers();
             InitEventHandlers();

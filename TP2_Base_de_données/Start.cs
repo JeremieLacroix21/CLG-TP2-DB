@@ -19,8 +19,6 @@ namespace TP2_Base_de_données
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Main lemain = new Main();
-            lemain.ShowDialog();
         }
     }
 }
