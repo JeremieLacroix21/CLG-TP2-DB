@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Objets_BD;
+using Global;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -91,6 +93,18 @@ namespace TP2_Base_de_données
 
         private void BTN_Ajouter_Click(object sender, EventArgs e)
         {
+            Question newq = new Question();
+            newq.Categorie = DBGlobal.Categories[0];
+            newq.Enonce = RTBX_Question.Text;
+            Reponse[] Tab = new Reponse[4];
+            Tab[0] =new Reponse { Description = RTBX_A_Reponse.Text, EstBonne = RBTN_A_Reponse.Checked, NumReponse = "A",Question = newq};
+            Tab[1] =new Reponse { Description = RTBX_B_Reponse.Text, EstBonne = RBTN_B_Reponse.Checked, NumReponse = "B",Question = newq};
+            Tab[2] =new Reponse { Description = RTBX_C_Reponse.Text, EstBonne = RBTN_C_Reponse.Checked, NumReponse = "C",Question = newq};
+            Tab[3] =new Reponse { Description = RTBX_D_Reponse.Text, EstBonne = RBTN_D_Reponse.Checked, NumReponse = "D",Question = newq};
+            newq.Reponses = Tab;
+
+
+            newq.Ajouter();
 
             Close();
         }
