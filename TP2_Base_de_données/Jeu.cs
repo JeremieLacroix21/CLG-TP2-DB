@@ -68,9 +68,7 @@ namespace TP2_Base_de_données
 
         private void Jeu_Load(object sender, EventArgs e)
         {
-            // TODO : Migrer ces instructions vers le form Start
-            DBGlobal.OuvrirConnexion(this);
-            Participants = DBGlobal.Joueurs;
+            
             // Initialiser tout
             InitTimers();
             InitEventHandlers();
