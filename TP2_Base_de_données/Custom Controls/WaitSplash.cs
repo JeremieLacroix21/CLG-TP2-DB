@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CustomControls
+namespace Custom_Controls
 {
     // Auteur: Nicolas Chourot
     public class WaitSplash : Form

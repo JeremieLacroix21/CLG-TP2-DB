@@ -1,14 +1,19 @@
---     Noms : Gabriel Fournier-Cloutier & Jérémie Lacroix
+--     Noms : Gabriel Fournier-Cloutier & Jeremie Lacroix
 --    Date : 2019-03-29
 --  Groupe : 02
 -- Fichier : Creation de tables
 --------------------------------------
---------------------- À NE PAS OUBLIER : DROP TABLE = Détruire les triggers aussi
+--------------------- A NE PAS OUBLIER : DROP TABLE = Detruire les triggers aussi
 --DROP TABLE CATEGORIES CASCADE CONSTRAINTS;
 --DROP TABLE joueurs CASCADE CONSTRAINTS;
 --DROP TABLE reponses CASCADE CONSTRAINTS;
 --DROP TABLE questions CASCADE CONSTRAINTS;
 --DROP TABLE scores CASCADE CONSTRAINTS;
+
+--DROP SEQUENCE SEQ_V_NUMQUESTION;
+--DROP SEQUENCE SEQ_B_NUMQUESTION;
+--DROP SEQUENCE SEQ_O_NUMQUESTION;
+--DROP SEQUENCE SEQ_M_NUMQUESTION;
 
 CREATE SEQUENCE SEQ_V_NUMQUESTION MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
 CREATE SEQUENCE SEQ_B_NUMQUESTION MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
@@ -34,7 +39,7 @@ ALTER TABLE joueurs ADD CONSTRAINT joueurs_pk PRIMARY KEY ( aliasjoueur );
 CREATE TABLE questions (
     numquestion     CHAR(6) NOT NULL,
     enonce          CLOB,
-    -- Indique si un joueur à correctement répondu à la question (dans la partie en cours)
+    -- Indique si un joueur a correctement repondu a la question (dans la partie en cours)
     repondu         CHAR(1),
     codecategorie   CHAR(1) NOT NULL
 );
@@ -55,9 +60,9 @@ ALTER TABLE reponses ADD CONSTRAINT CK_estbonne CHECK(estbonne IN('Y', 'N'));
 CREATE TABLE scores (
     codecategorie   CHAR(1) NOT NULL,
     aliasjoueur     VARCHAR2(20) NOT NULL,
-    -- Indique le nombre de fois que le joueur à gagné dans une certaine catégories (dans toutes les parties)
+    -- Indique le nombre de fois que le joueur a gagne dans une certaine categories (dans toutes les parties)
     score           NUMBER(5),
-    -- Indique si le joueur à gagné dans cette catégorie (dans la partie en cours)
+    -- Indique si le joueur a gagne dans cette categorie (dans la partie en cours)
     gagnee          CHAR(1)
 );
 

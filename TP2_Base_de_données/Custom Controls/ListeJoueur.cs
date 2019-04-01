@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Objets_BD;
+using Custom_Controls;
 
-namespace TP2_Base_de_données.Custom_Controls
+namespace Custom_Controls
 {
     public partial class ListeJoueur : UserControl
     {

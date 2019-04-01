@@ -14,70 +14,94 @@ namespace TP2_Base_de_données
 {
     public partial class Jeu : Form
     {
+        #region Constantes
         private const string FORMAT_POINTS = "{0} / {1}";
         private const string FORMAT_CLASSEMENT = "{0} : {1}({2} / {3})";
         private const string FORMAT_INFOS = "Il ne manque que {0} points à {1} pour gagner en";
         private const string FORMAT_INFOS_WIN = "Bravo à {0}";
         /// <summary>Quand TIMER_Roue atteindra cette durée en ms, la roue s'arrêtera</summary>
         private const double STOPPER_ROUE = 1000;
+        #endregion
 
+        #region Delegates pour opérations inter-thread
+        // Utiliser avec Control.Invoke() {https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.control.invoke?view=netframework-4.7.2}
         private delegate void UpdateControls(Categorie c);
-        private delegate void UpdateInfoPanel();
-        private EventHandler CategorieEnJeuChange;
+        private delegate void UpdateControls_();
+        #endregion
 
-        private System.Timers.Timer TIMER_PanneauInfo = new System.Timers.Timer() { Enabled = false, Interval = 7000 };
-        private System.Timers.Timer TIMER_Roue = new System.Timers.Timer() { Enabled = false, Interval = 100 };
+        #region Timers
+        // Les timers devront être lancés dans des BackgroundWorker afin d'éviter
+        // qu'ils s'exécutent sur le UIThread. Faire autrement fera geler aléatoirement l'application.
+        // La méthode Controle.Invoke() permettra de mettre à jour les éléments UI depuis les threads des timers.
+
+        /// <summary>Alterne entre le panneau d'infos et le panneau des classements</summary>
+        private System.Timers.Timer TIMER_PanneauInfo { get; set; }
+        /// <summary>Gère la "rotation" de la roue</summary>
+        private System.Timers.Timer TIMER_Roue { get; set; }
+        #endregion
+
+        [Obsolete("Utiliser _CategorieEnJeu à la place afin de déclencher les mécanismes dans SetCategorieEnJeu()")]
         private Categorie _CategorieEnJeuValeur;
+        private void SetCategorieEnJeu(Categorie value) {
+            _CategorieEnJeuValeur = value;
+            _CategorieEnJeuChange?.Invoke(value, new EventArgs());
+        }
 
-        private Categorie _CategoriePrecedente = null;
+        /// <summary>La catégorie ayant été obtenue au dernier tour de roue. null si la roue n'a jamais tourné.</summary>
+        private Categorie _CategoriePrecedente { get; set; }
+        /// <summary>Catégorie obtenue par la roue</summary>
         private Categorie _CategorieEnJeu { get => _CategorieEnJeuValeur; set => SetCategorieEnJeu(value); }
-        private Joueur _EnTrainDeJouer = null;
+        /// <summary>Invoqué dans SetCategorieEnJeu().</summary>
+        private EventHandler _CategorieEnJeuChange { get; set; }
+        /// <summary>Le joueur en train de faire des actions</summary>
+        private Joueur _EnTrainDeJouer { get; set; }
 
         /// <summary>Les participants seront gardés en ordre de pointage total</summary>
         public List<Joueur> Participants { get; set; }
         /// <summary>Sera null tant qu'aucun joueur n'aura gagné la partie</summary>
-        public Joueur Gagnant = null;
+        public Joueur Gagnant { get; private set; }
 
         public Jeu()
         {
             InitializeComponent();
-            TIMER_PanneauInfo.Elapsed += TIMER_PanneauInfo_Tick;
-            TIMER_Roue.Elapsed += TIMER_Roue_Tick;
         }
 
         private void Jeu_Load(object sender, EventArgs e)
         {
+            // TODO : Migrer ces instructions vers le form Start
             DBGlobal.OuvrirConnexion(this);
             Participants = DBGlobal.Joueurs;
-            CategorieEnJeuChange += (s, ev) => this.Invoke(new UpdateInfoPanel(UpdateInfos));
-            BW_TimerInfos.RunWorkerAsync();
-
-            UpdateClassement();
+            // Initialiser tout
+            InitTimers();
+            InitEventHandlers();
             InitJoueurs();
             InitPointage();
-            //LancerPartie();
+            // Lancer le timer utilisé pour alterner entre le panneau d'infos et le panneau des classements
+            BW_TimerInfos.RunWorkerAsync();
+            // Update initial du panneau des classements ("Aucuns points pour l'instant")
+            UpdateClassement();
+            // Débuter la partie
+            LancerPartie();
         }
 
-        private void SetCategorieEnJeu(Categorie value)
+        #region Méthodes Init
+        private void InitTimers()
         {
-            _CategorieEnJeuValeur = value;
-            if (value != null)
-                CategorieEnJeuChange?.Invoke(value, new EventArgs());
+            // Initialiser les timers
+            TIMER_PanneauInfo = new System.Timers.Timer() { Enabled = false, Interval = 7000 };
+            TIMER_Roue = new System.Timers.Timer() { Enabled = false, Interval = 100 };
+            // Attribuer les événements Tick au timers
+            TIMER_PanneauInfo.Elapsed += TIMER_PanneauInfo_Tick;
+            TIMER_Roue.Elapsed += TIMER_Roue_Tick;
         }
 
         private void InitJoueurs()
         {
-            foreach (var joueur in Participants)
-            {
-                LJ_Participants.Add(joueur);
-                joueur.PointageChange += (sender, e) =>
-                {
-                    this.Invoke(new UpdateInfoPanel(UpdateClassement));
-                    this.Invoke(new UpdateInfoPanel(UpdateInfos));
-                };
-            }
+            // Ajouter les joueurs à l'interface
+            LJ_Participants.AddRange(Participants.ToArray());
         }
 
+        // TODO : Migrer cette méthode vers le form Start
         private void InitPointage()
         {
             foreach (var categorie in DBGlobal.Categories)
@@ -89,29 +113,96 @@ namespace TP2_Base_de_données
             }
         }
 
+        private void InitEventHandlers()
+        {
+            // Chaque fois qu'une nouvelle instruction sera écrite dans RTBX_Instructions, la zone de texte clignotera
+            RTBX_Instructions.TextChanged += (sender, e) => {
+                CustomUtils.Blink(RTBX_Instructions, SystemColors.MenuHighlight, SystemColors.ControlLightLight, 100, 4);
+            };
+
+            // Chaque fois que la catégorie va changer, le panneau d'infos sera mise à jour
+            _CategorieEnJeuChange += (sender, e) => {
+                if (_CategorieEnJeu == null) {
+                    this.Invoke(new UpdateControls_(UpdateInfosVisible));
+                    this.Invoke(new UpdateControls(UpdateRoue), _CategorieEnJeu);
+                } else {
+                    this.Invoke(new UpdateControls_(UpdateInfos));
+                    this.Invoke(new UpdateControls_(ChargerQuestion));
+                }
+            };
+
+            // Chaque fois que le pointage d'un participant va changer, le UI sera mise à jour
+            foreach (var joueur in Participants) {
+                joueur.PointageChange += (sender, e) => {
+                    this.Invoke(new UpdateControls_(UpdateClassement));
+                    this.Invoke(new UpdateControls_(UpdateInfos));
+                };
+            }
+
+            Q_Questionnaire.RespondClicked += GererReponse;
+        }
+        #endregion
+
+        #region Méthodes de jeu
+        /// <summary>
+        /// Méthode de jeu initiale qui lance la "game loop"
+        /// </summary>
         private void LancerPartie()
         {
-            while (Gagnant == null)
-            {
-                _EnTrainDeJouer = ProchainJoueur();
-                _EnTrainDeJouer.AliasJoueur += " A";
-                //DebloquerRoue();
-            }
+            //MessageBox.Show(string.Format("Le jeu est très simple, tournez la roue pour obtenir une catégorie, répondez à la question présentée," +
+            //    "recommencez jusqu'à avoir {0} points dans chaque catégorie.\nLa partie commence maintenant!", Categorie.GAGNER_NBPOINTS), "Jeu Quiz");
+            Question.ResetQuestionsRepondues();
+            Categorie.ResetCategoriesGagnee();
+
+            ProchainJoueur();
+        }
+
+        /// <summary>Passe au prochain joueur dans l'ordre de jeu et l'assigne à _EnTrainDeJouer. Débloque ensuite la roue.</summary>
+        private void ProchainJoueur()
+        {
+            LJ_Participants.SelectNextItem();
+            _EnTrainDeJouer = LJ_Participants.SelectedItem;
+            DebloquerRoue();
         }
 
         private void DebloquerRoue()
         {
+            _CategorieEnJeu = null;
+            RTBX_Instructions.Text = "Au tour de " + LJ_Participants.SelectedItem.AliasJoueur + "!\n\nTournez la roue pour connaitre la catégorie de la prochaine question.";
             BTN_Tourner.Enabled = true;
         }
 
-        /// <summary>Passe au prochain joueur dans l'ordre de jeu et le retourne</summary>
-        private Joueur ProchainJoueur()
+        /// <summary>
+        /// Charge une question au hasard depuis la base de donnée et la met dans le questionnaire
+        /// </summary>
+        private void ChargerQuestion()
         {
-            LJ_Participants.SelectNextItem();
-            MessageBox.Show("Au tour de " + LJ_Participants.SelectedItem.AliasJoueur + "!\nTournez la roue pour connaitre la catégorie de la prochaine question.");
-            return LJ_Participants.SelectedItem;
+            Q_Questionnaire.ARepondre = Question.GetQuestionHasard(_CategorieEnJeu);
         }
 
+        private void GererReponse(object sender, EventArgs e)
+        {
+            if (Q_Questionnaire.Choisie.EstBonne)
+            {
+                Q_Questionnaire.ARepondre.Repondre();
+
+                _EnTrainDeJouer[_CategorieEnJeu] += Question.POINTS_REPONSE;
+                if (_EnTrainDeJouer[_CategorieEnJeu] == Categorie.GAGNER_NBPOINTS)
+                    _EnTrainDeJouer.IncrScore(_CategorieEnJeu);
+
+                MessageBox.Show("Bonne réponse!");
+                DebloquerRoue();
+            }
+            else
+            {
+                MessageBox.Show("Mauvaise réponse!");
+                ProchainJoueur();
+            }
+            Q_Questionnaire.ARepondre = null;
+        }
+        #endregion
+
+        #region Méthodes Update
         private void UpdateClassement()
         {
             if (Joueur.CalculerPointageTotal(Participants) > 0)
@@ -131,9 +222,11 @@ namespace TP2_Base_de_données
 
         private void UpdateRoue(Categorie categorie)
         {
-            P_Roue.BackColor = categorie.Couleur;
-            LAB_NomCatRoue.BackColor = categorie.Couleur;
-            LAB_NomCatRoue.Text = categorie.Nom;
+            bool aucuneCategorie = categorie == null;
+
+            P_Roue.BackColor = aucuneCategorie ? SystemColors.Control : categorie.Couleur;
+            LAB_NomCatRoue.BackColor = aucuneCategorie ? SystemColors.Control : categorie.Couleur;
+            LAB_NomCatRoue.Text = aucuneCategorie ? "????" : categorie.Nom;
         }
 
         private void UpdateInfosVisible()
@@ -163,15 +256,44 @@ namespace TP2_Base_de_données
                 PB_PointsInfos.Value = _EnTrainDeJouer[_CategorieEnJeu];
             }
         }
+        #endregion
+
+        #region Control Events
+
+        private void Jeu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (var joueur in Participants)
+            {
+                joueur.ClearPointageChange();
+            }
+        }
+
+        private void BTN_Tourner_Click(object sender, EventArgs e)
+        {
+            BTN_Tourner.Enabled = false;
+            BW_TimerRoue.RunWorkerAsync();
+        }
+
+        private void BW_TimerRoue_DoWork(object sender, DoWorkEventArgs e)
+        {
+            TIMER_Roue.Start();
+        }
+
+        private void BW_TimerInfos_DoWork(object sender, DoWorkEventArgs e)
+        {
+            TIMER_PanneauInfo.Start();
+        }
 
         private void TIMER_Roue_Tick(object sender, EventArgs e)
         {
             Categorie categorie;
             Random rand = new Random();
+            List<Categorie> categoriesGagnees = _EnTrainDeJouer.GetCategoriesGagnees_Local();
             do
             {
                 categorie = DBGlobal.Categories[rand.Next() % DBGlobal.Categories.Count];
-            } while (_CategoriePrecedente != null && categorie == _CategoriePrecedente);
+                // La catégorie sélectionner ne pourra par être la même que la précédente et ne pourra pas être une catégorie où le joueur courant à déjà gagné
+            } while ((_CategoriePrecedente != null && categorie == _CategoriePrecedente) || categoriesGagnees.Contains(categorie));
             _CategoriePrecedente = categorie;
 
             this.Invoke(new UpdateControls(UpdateRoue), categorie);
@@ -192,36 +314,9 @@ namespace TP2_Base_de_données
 
         private void TIMER_PanneauInfo_Tick(object sender, EventArgs e)
         {
-            this.Invoke(new UpdateInfoPanel(UpdateInfosVisible));
+            this.Invoke(new UpdateControls_(UpdateInfosVisible));
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Random rand = new Random();
-            Categorie c = _CategorieEnJeu ?? DBGlobal.Categories[rand.Next() % DBGlobal.Categories.Count];
-            _EnTrainDeJouer[c] += 1;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _EnTrainDeJouer = ProchainJoueur();
-            DebloquerRoue();
-        }
-
-        private void BTN_Tourner_Click(object sender, EventArgs e)
-        {
-            BTN_Tourner.Enabled = false;
-            BW_TimerRoue.RunWorkerAsync();
-        }
-
-        private void BW_TimerRoue_DoWork(object sender, DoWorkEventArgs e)
-        {
-            TIMER_Roue.Start();
-        }
-
-        private void BW_TimerInfos_DoWork(object sender, DoWorkEventArgs e)
-        {
-            TIMER_PanneauInfo.Start();
-        }
+        #endregion
     }
 }

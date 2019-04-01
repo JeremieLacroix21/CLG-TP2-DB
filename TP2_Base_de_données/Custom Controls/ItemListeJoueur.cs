@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Objets_BD;
 using Global;
 
-namespace TP2_Base_de_données.Custom_Controls
+namespace Custom_Controls
 {
     public partial class ItemListeJoueur : UserControl
     {

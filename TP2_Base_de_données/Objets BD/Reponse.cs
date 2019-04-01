@@ -13,6 +13,7 @@ namespace Objets_BD
         public bool EstBonne { get; set; }
         public Question Question { get; set; }
 
+        #region Requêtes BD
         /// <summary>
         /// Ajoute la réponse à la base de donnée
         /// </summary>
@@ -39,8 +40,9 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Reponse.Ajouter : " + sqlExcept.Message);
             }
         }
+        #endregion
     }
 }

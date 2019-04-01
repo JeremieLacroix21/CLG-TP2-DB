@@ -9,29 +9,51 @@ namespace Objets_BD
 {
     public class Joueur : IComparable<Joueur>
     {
-        private Dictionary<Categorie, int> Pointage { get; set; }
+        private Dictionary<Categorie, int> _Pointage { get; set; }
+
+        #region Éléments de PointageChange(EventHandler)
+        private List<EventHandler> _Delegates_PointageChange { get; set; }
+        private EventHandler _PointageChange { get; set; }
+        /// <summary>Est lancé quand un des pointage du joueur est modifié</summary>
+        public event EventHandler PointageChange {
+            add {
+                _PointageChange += value;
+                _Delegates_PointageChange.Add(value);
+            }
+            remove {
+                _PointageChange -= value;
+                _Delegates_PointageChange.Remove(value);
+            }
+        }
+        #endregion
 
         public string AliasJoueur { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        /// <summary>Est lancé quand un des pointage du joueur est modifié</summary>
-        public EventHandler PointageChange { get; set; }
         
         public Joueur()
         {
-            Pointage = new Dictionary<Categorie, int>();
+            _Pointage = new Dictionary<Categorie, int>();
+            _Delegates_PointageChange = new List<EventHandler>();
         }
 
+        #region Methodes Pointages
+        /// <summary>
+        /// Retourne la somme des pointages du joueur toutes catégories confondues
+        /// </summary>
         public int CalculerPointageTotal()
         {
             int total = 0;
-            foreach(var pair in Pointage)
+            foreach(var pair in _Pointage)
             {
                 total += pair.Value;
             }
             return total;
         }
 
+        /// <summary>
+        /// Retourne la somme des pointages de joueurs toutes catégories confondues
+        /// </summary>
         public static int CalculerPointageTotal(List<Joueur> joueurs)
         {
             int total = 0;
@@ -42,21 +64,50 @@ namespace Objets_BD
             return total;
         }
 
-        public void AjouterPointage(Categorie seraAssociee, int pointageInitial)
+        /// <summary>
+        /// Remet tous les points à 0
+        /// </summary>
+        public void ResetPointage()
         {
-            Pointage.Add(seraAssociee, pointageInitial);
+            foreach(var pair in _Pointage)
+            {
+                this[pair.Key] = 0;
+            }
         }
 
-        /// <summary>Retourne un pointage associé à une certaine catégorie</summary>
+        /// <summary>
+        /// Ajoute une "case" au pointage du joueur pour une certaine catégorie
+        /// </summary>
+        public void AjouterPointage(Categorie seraAssociee, int pointageInitial = 0)
+        {
+            _Pointage.Add(seraAssociee, pointageInitial);
+        }
+
+        /// <summary>
+        /// Désinscrit toutes les méthodes inscrites à PointageChange
+        /// </summary>
+        public void ClearPointageChange()
+        {
+            foreach (var e in _Delegates_PointageChange)
+            {
+                _PointageChange -= e;
+            }
+            _Delegates_PointageChange.Clear();
+        }
+        #endregion
+
+        /// <summary>
+        /// Retourne un pointage associé à une certaine catégorie
+        /// </summary>
         public int this[Categorie key]
         {
-            get { return Pointage[key]; }
+            get { return _Pointage[key]; }
             set
             {
                 if (value <= Categorie.GAGNER_NBPOINTS)
                 {
-                    Pointage[key] = value;
-                    PointageChange?.Invoke(this, new EventArgs());
+                    _Pointage[key] = value;
+                    _PointageChange?.Invoke(this, new EventArgs());
                 }
                 else
                 {
@@ -73,11 +124,21 @@ namespace Objets_BD
                 return -this.CalculerPointageTotal().CompareTo(compareJoueur.CalculerPointageTotal());
         }
 
-        public override string ToString()
+        /// <summary>
+        /// Retourne les catégories gagnées par le joueur sans faire de requête à la base de donnée
+        /// </summary>
+        public List<Categorie> GetCategoriesGagnees_Local()
         {
-            return AliasJoueur;
+            List<Categorie> gagnees = new List<Categorie>();
+            foreach (var pair in _Pointage)
+            {
+                if (pair.Value == Categorie.GAGNER_NBPOINTS)
+                    gagnees.Add(pair.Key);
+            }
+            return gagnees;
         }
 
+        #region Requêtes BD
         /// <summary>
         /// Incrémente le score du joueur pour une catégorie et met le flag gagnee à true dans la base de donnée
         /// </summary>
@@ -95,7 +156,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Joueur.IncrScore : " + sqlExcept.Message);
             }
         }
 
@@ -126,7 +187,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Joueur.GetScores : " + sqlExcept.Message);
             }
 
             return resultat;
@@ -158,7 +219,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Joueur.GetCategoriesGagnees : " + sqlExcept.Message);
             }
 
             return resultat;
@@ -187,7 +248,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Joueur.GetCategorieFaible : " + sqlExcept.Message);
             }
 
             return resultat;
@@ -209,7 +270,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Joueur.Supprimer : " + sqlExcept.Message);
             }
         }
 
@@ -238,7 +299,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Joueur.Ajouter : " + sqlExcept.Message);
             }
         }
 
@@ -272,10 +333,11 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Joueur.ChargerTous : " + sqlExcept.Message);
             }
 
             return resultat;
         }
+        #endregion
     }
 }

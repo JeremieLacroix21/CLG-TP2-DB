@@ -1,4 +1,4 @@
-﻿namespace TP2_Base_de_données.Custom_Controls
+﻿namespace Custom_Controls
 {
     partial class ListeJoueur
     {

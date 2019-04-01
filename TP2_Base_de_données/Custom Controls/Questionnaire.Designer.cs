@@ -1,4 +1,4 @@
-﻿namespace TP2_Base_de_données.Custom_Controls
+﻿namespace Custom_Controls
 {
     partial class Questionnaire
     {
@@ -44,16 +44,21 @@
             // 
             // RTBX_Question
             // 
+            this.RTBX_Question.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RTBX_Question.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RTBX_Question.Cursor = System.Windows.Forms.Cursors.Default;
             this.RTBX_Question.Location = new System.Drawing.Point(0, 20);
             this.RTBX_Question.Margin = new System.Windows.Forms.Padding(2);
             this.RTBX_Question.Name = "RTBX_Question";
-            this.RTBX_Question.ReadOnly = true;
             this.RTBX_Question.Size = new System.Drawing.Size(376, 145);
             this.RTBX_Question.TabIndex = 6;
             this.RTBX_Question.Text = "";
             // 
             // RBTN_B_Reponse
             // 
+            this.RBTN_B_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RBTN_B_Reponse.AutoSize = true;
             this.RBTN_B_Reponse.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.RBTN_B_Reponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -70,6 +75,7 @@
             // 
             // RBTN_C_Reponse
             // 
+            this.RBTN_C_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RBTN_C_Reponse.AutoSize = true;
             this.RBTN_C_Reponse.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.RBTN_C_Reponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,6 +92,7 @@
             // 
             // RBTN_D_Reponse
             // 
+            this.RBTN_D_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RBTN_D_Reponse.AutoSize = true;
             this.RBTN_D_Reponse.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.RBTN_D_Reponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -102,6 +109,7 @@
             // 
             // RBTN_A_Reponse
             // 
+            this.RBTN_A_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RBTN_A_Reponse.AutoSize = true;
             this.RBTN_A_Reponse.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.RBTN_A_Reponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,50 +128,64 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(-3, -1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 18);
             this.label1.TabIndex = 11;
             this.label1.Text = "Question";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // RTBX_A_Reponse
             // 
+            this.RTBX_A_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RTBX_A_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RTBX_A_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
             this.RTBX_A_Reponse.Location = new System.Drawing.Point(48, 191);
             this.RTBX_A_Reponse.Name = "RTBX_A_Reponse";
-            this.RTBX_A_Reponse.ReadOnly = true;
-            this.RTBX_A_Reponse.Size = new System.Drawing.Size(312, 35);
+            this.RTBX_A_Reponse.Size = new System.Drawing.Size(316, 35);
             this.RTBX_A_Reponse.TabIndex = 12;
             this.RTBX_A_Reponse.Text = "";
             // 
             // RTBX_B_Reponse
             // 
+            this.RTBX_B_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RTBX_B_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RTBX_B_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
             this.RTBX_B_Reponse.Location = new System.Drawing.Point(48, 232);
             this.RTBX_B_Reponse.Name = "RTBX_B_Reponse";
-            this.RTBX_B_Reponse.ReadOnly = true;
-            this.RTBX_B_Reponse.Size = new System.Drawing.Size(312, 35);
+            this.RTBX_B_Reponse.Size = new System.Drawing.Size(316, 35);
             this.RTBX_B_Reponse.TabIndex = 13;
             this.RTBX_B_Reponse.Text = "";
             // 
             // RTBX_C_Reponse
             // 
+            this.RTBX_C_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RTBX_C_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RTBX_C_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
             this.RTBX_C_Reponse.Location = new System.Drawing.Point(48, 273);
             this.RTBX_C_Reponse.Name = "RTBX_C_Reponse";
-            this.RTBX_C_Reponse.ReadOnly = true;
-            this.RTBX_C_Reponse.Size = new System.Drawing.Size(312, 35);
+            this.RTBX_C_Reponse.Size = new System.Drawing.Size(316, 35);
             this.RTBX_C_Reponse.TabIndex = 14;
             this.RTBX_C_Reponse.Text = "";
             // 
             // RTBX_D_Reponse
             // 
+            this.RTBX_D_Reponse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RTBX_D_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RTBX_D_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
             this.RTBX_D_Reponse.Location = new System.Drawing.Point(48, 314);
             this.RTBX_D_Reponse.Name = "RTBX_D_Reponse";
-            this.RTBX_D_Reponse.ReadOnly = true;
-            this.RTBX_D_Reponse.Size = new System.Drawing.Size(312, 35);
+            this.RTBX_D_Reponse.Size = new System.Drawing.Size(316, 35);
             this.RTBX_D_Reponse.TabIndex = 15;
             this.RTBX_D_Reponse.Text = "";
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 168);
@@ -174,11 +196,11 @@
             // 
             // BTN_Repondre
             // 
-            this.BTN_Repondre.Enabled = false;
+            this.BTN_Repondre.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BTN_Repondre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_Repondre.Location = new System.Drawing.Point(119, 363);
+            this.BTN_Repondre.Location = new System.Drawing.Point(0, 361);
             this.BTN_Repondre.Name = "BTN_Repondre";
-            this.BTN_Repondre.Size = new System.Drawing.Size(121, 42);
+            this.BTN_Repondre.Size = new System.Drawing.Size(376, 38);
             this.BTN_Repondre.TabIndex = 17;
             this.BTN_Repondre.Text = "Répondre";
             this.BTN_Repondre.UseVisualStyleBackColor = true;
@@ -202,7 +224,7 @@
             this.Controls.Add(this.RTBX_Question);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Questionnaire";
-            this.Size = new System.Drawing.Size(376, 418);
+            this.Size = new System.Drawing.Size(376, 399);
             this.Load += new System.EventHandler(this.Questionnaire_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

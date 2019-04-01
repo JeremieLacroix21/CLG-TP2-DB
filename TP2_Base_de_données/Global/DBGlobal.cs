@@ -1,9 +1,9 @@
-﻿using CustomControls;
-using Oracle.ManagedDataAccess.Client;
+﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Objets_BD;
+using Custom_Controls;
 
 namespace Global
 {

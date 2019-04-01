@@ -1,4 +1,4 @@
-﻿namespace TP2_Base_de_données.Custom_Controls
+﻿namespace Custom_Controls
 {
     partial class ItemListeJoueur
     {
@@ -28,24 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LAB_Alias = new System.Windows.Forms.Label();
             this.BTN_Points = new System.Windows.Forms.Button();
             this.LAB_Num = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.BTN_Stats = new System.Windows.Forms.Button();
+            this.LAB_Alias = new System.Windows.Forms.Label();
             this.LAB_Points = new System.Windows.Forms.Label();
+            this.BTN_Stats = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // LAB_Alias
-            // 
-            this.LAB_Alias.AutoSize = true;
-            this.LAB_Alias.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LAB_Alias.Location = new System.Drawing.Point(37, 6);
-            this.LAB_Alias.Name = "LAB_Alias";
-            this.LAB_Alias.Size = new System.Drawing.Size(124, 18);
-            this.LAB_Alias.TabIndex = 0;
-            this.LAB_Alias.Text = "Alias du Joueur";
             // 
             // BTN_Points
             // 
@@ -79,19 +69,18 @@
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(238, 57);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(246, 57);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
-            // BTN_Stats
+            // LAB_Alias
             // 
-            this.BTN_Stats.Location = new System.Drawing.Point(117, 24);
-            this.BTN_Stats.Margin = new System.Windows.Forms.Padding(0);
-            this.BTN_Stats.Name = "BTN_Stats";
-            this.BTN_Stats.Size = new System.Drawing.Size(111, 26);
-            this.BTN_Stats.TabIndex = 3;
-            this.BTN_Stats.Text = "Afficher Stats";
-            this.BTN_Stats.UseVisualStyleBackColor = true;
-            this.BTN_Stats.Click += new System.EventHandler(this.BTN_Stats_Click);
+            this.LAB_Alias.AutoSize = true;
+            this.LAB_Alias.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAB_Alias.Location = new System.Drawing.Point(37, 6);
+            this.LAB_Alias.Name = "LAB_Alias";
+            this.LAB_Alias.Size = new System.Drawing.Size(124, 18);
+            this.LAB_Alias.TabIndex = 0;
+            this.LAB_Alias.Text = "Alias du Joueur";
             // 
             // LAB_Points
             // 
@@ -104,6 +93,17 @@
             this.LAB_Points.TabIndex = 4;
             this.LAB_Points.Text = "(0 / 20)";
             // 
+            // BTN_Stats
+            // 
+            this.BTN_Stats.Location = new System.Drawing.Point(117, 24);
+            this.BTN_Stats.Margin = new System.Windows.Forms.Padding(0);
+            this.BTN_Stats.Name = "BTN_Stats";
+            this.BTN_Stats.Size = new System.Drawing.Size(111, 26);
+            this.BTN_Stats.TabIndex = 3;
+            this.BTN_Stats.Text = "Afficher Stats";
+            this.BTN_Stats.UseVisualStyleBackColor = true;
+            this.BTN_Stats.Click += new System.EventHandler(this.BTN_Stats_Click);
+            // 
             // ItemListeJoueur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -114,7 +114,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ItemListeJoueur";
-            this.Size = new System.Drawing.Size(238, 57);
+            this.Size = new System.Drawing.Size(246, 57);
             this.Load += new System.EventHandler(this.ItemListeJoueur_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
@@ -123,12 +123,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label LAB_Alias;
         private System.Windows.Forms.Button BTN_Points;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label LAB_Num;
-        private System.Windows.Forms.Button BTN_Stats;
+        private System.Windows.Forms.Label LAB_Alias;
         private System.Windows.Forms.Label LAB_Points;
+        private System.Windows.Forms.Button BTN_Stats;
     }
 }

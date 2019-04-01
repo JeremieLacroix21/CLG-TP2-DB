@@ -11,6 +11,8 @@ namespace Objets_BD
     public class Question
     {
         public const int NB_REPONSES = 4;
+        /// <summary>Le nombre de points gagnés par bonne réponse</summary>
+        public const int POINTS_REPONSE = 1;
 
         public string NumQuestion { get; private set; }
         public string Enonce { get; set; }
@@ -22,6 +24,7 @@ namespace Objets_BD
             Reponses = new Reponse[NB_REPONSES];
         }
 
+        #region Requêtes BD
         /// <summary>
         /// Charge les réponses depuis la base de donnée
         /// </summary>
@@ -51,7 +54,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Question.ChargerReponses : " + sqlExcept.Message);
             }
         }
 
@@ -72,7 +75,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Question.Repondre : " + sqlExcept.Message);
             }
         }
 
@@ -80,6 +83,8 @@ namespace Objets_BD
         /// Ajoute la question à la base de donnée (<see cref="NumQuestion"/> sera changé par un ID unique attribué par la base de donnée)
         /// </summary>
         /// <exception cref="ArgumentException">Certaines propriétés de la question sont null</exception>
+        // TODO : InsertQuestion() a été changé dans la BD, Ajouter() est à modifier pour prendre en compte ces changements
+        [Obsolete("InsertQuestion() a été changé dans la BD, Ajouter() est à modifier pour prendre en compte ces changements", true)]
         public void Ajouter()
         {
             // Vérifier que toute les propriétés de la question sont valide
@@ -90,6 +95,7 @@ namespace Objets_BD
 
             try
             {
+                //
                 OracleCommand command = new OracleCommand("GESTIONQUESTIONS.InsertQuestion", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
@@ -110,7 +116,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Question.Ajouter : " + sqlExcept.Message);
             }
         }
 
@@ -127,12 +133,12 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Question.ResetQuestionsRepondues : " + sqlExcept.Message);
             }
         }
 
         /// <summary>
-        /// Retourne une question d'une catégorie au hasard dont le flag repondu est faux
+        /// Retourne une question au hasard faisant partie d'une certaine catégorie et dont le flag repondu est faux
         /// </summary>
         public static Question GetQuestionHasard(Categorie categorie)
         {
@@ -156,10 +162,11 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show(sqlExcept.Message);
+                MessageBox.Show("Question.GetQuestionHasard : " + sqlExcept.Message);
             }
 
             return resultat;
         }
+        #endregion
     }
 }
