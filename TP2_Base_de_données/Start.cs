@@ -33,6 +33,7 @@ namespace TP2_Base_de_données
             Jeu lemain = new Jeu();
             lemain.Participants = Participants;
             lemain.ShowDialog();
+
         }
 
         private void BTN_AjouterQuestion_Click(object sender, EventArgs e)

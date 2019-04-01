@@ -68,7 +68,8 @@ namespace TP2_Base_de_données
 
         private void Jeu_Load(object sender, EventArgs e)
         {
-            
+          
+
             // Initialiser tout
             InitTimers();
             InitEventHandlers();
