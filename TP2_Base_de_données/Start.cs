@@ -38,5 +38,11 @@ namespace TP2_Base_de_données
             AjouterQuestion ajout = new AjouterQuestion();
             ajout.Show();
         }
+
+        private void BTN_Configurerjoueur_Click(object sender, EventArgs e)
+        {
+            JoueurManager manager = new JoueurManager();
+            manager.Show();
+        }
     }
 }
