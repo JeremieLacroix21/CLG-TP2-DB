@@ -48,6 +48,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.RTBX_Instructions = new System.Windows.Forms.RichTextBox();
+            this.CC_Choisir = new Custom_Controls.ChoisirCategorie();
             this.Q_Questionnaire = new Custom_Controls.Questionnaire();
             this.LJ_Participants = new Custom_Controls.ListeJoueur();
             this.P_PointsRestants.SuspendLayout();
@@ -259,6 +260,16 @@
             this.RTBX_Instructions.TabIndex = 30;
             this.RTBX_Instructions.Text = "";
             // 
+            // CC_Choisir
+            // 
+            this.CC_Choisir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.CC_Choisir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CC_Choisir.Location = new System.Drawing.Point(599, 22);
+            this.CC_Choisir.Name = "CC_Choisir";
+            this.CC_Choisir.Size = new System.Drawing.Size(258, 149);
+            this.CC_Choisir.TabIndex = 32;
+            this.CC_Choisir.Visible = false;
+            // 
             // Q_Questionnaire
             // 
             this.Q_Questionnaire.ARepondre = null;
@@ -284,6 +295,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 413);
+            this.Controls.Add(this.CC_Choisir);
             this.Controls.Add(this.RTBX_Instructions);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);
@@ -338,5 +350,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox RTBX_Instructions;
+        private Custom_Controls.ChoisirCategorie CC_Choisir;
     }
 }

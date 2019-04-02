@@ -123,6 +123,7 @@ namespace TP2_Base_de_données
         private void AjouterQuestion_FormClosed(object sender, FormClosedEventArgs e)
         {
             AjouterlaQuestion();
+
         }
     }
 }

@@ -66,8 +66,9 @@ namespace Custom_Controls
 
             if (CallerForm != null)
             {
-               // Thread.Sleep(300);
-                CallerForm.BringToFront();
+                // Thread.Sleep(300);
+                CallerForm.TopMost = true;
+                CallerForm.TopMost = false;
                 CallerForm.ActiveControl = _ActiveControl;
                 CallerForm = null;
             }

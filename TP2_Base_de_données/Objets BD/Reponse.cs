@@ -31,10 +31,10 @@ namespace Objets_BD
                 OracleCommand command = new OracleCommand("GESTIONQUESTIONS.InsertReponse", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
-                    new OracleParameter("P_numReponse", OracleDbType.Varchar2, ParameterDirection.Input),
-                    new OracleParameter("P_description", OracleDbType.Varchar2, this.Description, ParameterDirection.Input),
-                    new OracleParameter("P_estBonne", OracleDbType.Char, (this.EstBonne ? "Y" : "N"), ParameterDirection.Input),
-                    new OracleParameter("P_numQuestion", OracleDbType.Varchar2, this.Question.NumQuestion, ParameterDirection.Input)
+                    new OracleParameter("P_numReponse", OracleDbType.Varchar2, 20, this.NumReponse, ParameterDirection.Input),
+                    new OracleParameter("P_description", OracleDbType.Clob, this.Description, ParameterDirection.Input),
+                    new OracleParameter("P_estBonne", OracleDbType.Char, 1, (this.EstBonne ? "Y" : "N"), ParameterDirection.Input),
+                    new OracleParameter("P_numQuestion", OracleDbType.Varchar2, 20, this.Question.NumQuestion, ParameterDirection.Input)
                 );
                 command.ExecuteNonQuery();
             }

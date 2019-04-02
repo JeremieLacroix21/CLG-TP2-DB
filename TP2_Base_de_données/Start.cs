@@ -14,7 +14,6 @@ namespace TP2_Base_de_données
 {
     public partial class Start : Form
     {
-
         private List<Joueur> Participants;
         public Start()
         {
@@ -23,7 +22,6 @@ namespace TP2_Base_de_données
 
         private void Start_Load(object sender, EventArgs e)
         {
-            // TODO : Migrer ces instructions vers le form Start
             DBGlobal.OuvrirConnexion(this);
             Participants = DBGlobal.Joueurs;
         }
@@ -31,9 +29,8 @@ namespace TP2_Base_de_données
         private void button1_Click(object sender, EventArgs e)
         {
             Jeu lemain = new Jeu();
-            lemain.Participants = Participants;
+            lemain.Participants.AddRange(Participants.ToArray());
             lemain.ShowDialog();
-
         }
 
         private void BTN_AjouterQuestion_Click(object sender, EventArgs e)
