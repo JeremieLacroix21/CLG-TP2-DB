@@ -35,7 +35,7 @@
             this.LAB_Alias = new System.Windows.Forms.Label();
             this.LAB_Nom = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.LAB_CatFaible = new System.Windows.Forms.Label();
             this.FLP_Categories = new System.Windows.Forms.FlowLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
             this.PB_Art = new System.Windows.Forms.ProgressBar();
@@ -53,15 +53,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.LAB_CatForte = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
-            this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
+            this.DUD_Gagnees = new System.Windows.Forms.DomainUpDown();
+            this.DUD_AGagner = new System.Windows.Forms.DomainUpDown();
             this.FLP_Categories.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -139,18 +139,18 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Faiblesse :";
             // 
-            // label8
+            // LAB_CatFaible
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoEllipsis = true;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(96, 231);
-            this.label8.MaximumSize = new System.Drawing.Size(150, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 18);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Alias du Joueur";
+            this.LAB_CatFaible.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LAB_CatFaible.AutoEllipsis = true;
+            this.LAB_CatFaible.AutoSize = true;
+            this.LAB_CatFaible.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAB_CatFaible.Location = new System.Drawing.Point(96, 231);
+            this.LAB_CatFaible.MaximumSize = new System.Drawing.Size(150, 20);
+            this.LAB_CatFaible.Name = "LAB_CatFaible";
+            this.LAB_CatFaible.Size = new System.Drawing.Size(108, 18);
+            this.LAB_CatFaible.TabIndex = 15;
+            this.LAB_CatFaible.Text = "Nom Faiblesse";
             // 
             // FLP_Categories
             // 
@@ -357,18 +357,18 @@
             this.label7.TabIndex = 46;
             this.label7.Text = "Force :";
             // 
-            // label9
+            // LAB_CatForte
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label9.AutoEllipsis = true;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(96, 204);
-            this.label9.MaximumSize = new System.Drawing.Size(150, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(109, 18);
-            this.label9.TabIndex = 47;
-            this.label9.Text = "Alias du Joueur";
+            this.LAB_CatForte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LAB_CatForte.AutoEllipsis = true;
+            this.LAB_CatForte.AutoSize = true;
+            this.LAB_CatForte.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LAB_CatForte.Location = new System.Drawing.Point(96, 204);
+            this.LAB_CatForte.MaximumSize = new System.Drawing.Size(150, 20);
+            this.LAB_CatForte.Name = "LAB_CatForte";
+            this.LAB_CatForte.Size = new System.Drawing.Size(84, 18);
+            this.LAB_CatForte.TabIndex = 47;
+            this.LAB_CatForte.Text = "Nom Force";
             // 
             // label14
             // 
@@ -427,31 +427,29 @@
             this.panel2.Size = new System.Drawing.Size(349, 1);
             this.panel2.TabIndex = 54;
             // 
-            // domainUpDown1
+            // DUD_Gagnees
             // 
-            this.domainUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.domainUpDown1.Location = new System.Drawing.Point(95, 110);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(226, 22);
-            this.domainUpDown1.TabIndex = 57;
-            this.domainUpDown1.Text = "domainUpDown1";
+            this.DUD_Gagnees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DUD_Gagnees.Location = new System.Drawing.Point(95, 110);
+            this.DUD_Gagnees.Name = "DUD_Gagnees";
+            this.DUD_Gagnees.Size = new System.Drawing.Size(226, 22);
+            this.DUD_Gagnees.TabIndex = 57;
             // 
-            // domainUpDown2
+            // DUD_AGagner
             // 
-            this.domainUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.domainUpDown2.Location = new System.Drawing.Point(95, 133);
-            this.domainUpDown2.Name = "domainUpDown2";
-            this.domainUpDown2.Size = new System.Drawing.Size(226, 22);
-            this.domainUpDown2.TabIndex = 58;
-            this.domainUpDown2.Text = "domainUpDown2";
+            this.DUD_AGagner.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DUD_AGagner.Location = new System.Drawing.Point(95, 133);
+            this.DUD_AGagner.Name = "DUD_AGagner";
+            this.DUD_AGagner.Size = new System.Drawing.Size(226, 22);
+            this.DUD_AGagner.TabIndex = 58;
             // 
             // DLG_Stats
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(333, 405);
-            this.Controls.Add(this.domainUpDown2);
-            this.Controls.Add(this.domainUpDown1);
+            this.Controls.Add(this.DUD_AGagner);
+            this.Controls.Add(this.DUD_Gagnees);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label17);
@@ -459,10 +457,10 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.LAB_CatForte);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.LAB_CatFaible);
             this.Controls.Add(this.LAB_Prenom);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -496,7 +494,7 @@
         private System.Windows.Forms.Label LAB_Alias;
         private System.Windows.Forms.Label LAB_Nom;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label LAB_CatFaible;
         private System.Windows.Forms.FlowLayoutPanel FLP_Categories;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ProgressBar PB_Art;
@@ -514,14 +512,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label LAB_CatForte;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
-        private System.Windows.Forms.DomainUpDown domainUpDown2;
+        private System.Windows.Forms.DomainUpDown DUD_Gagnees;
+        private System.Windows.Forms.DomainUpDown DUD_AGagner;
     }
 }
