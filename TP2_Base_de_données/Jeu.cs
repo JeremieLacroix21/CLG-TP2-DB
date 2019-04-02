@@ -41,6 +41,7 @@ namespace TP2_Base_de_données
         #endregion
 
         private DLG_Points _FormPoints { get; set; }
+        private DLG_Stats _FormStats { get; set; }
 
         [Obsolete("Utiliser _CategorieEnJeu à la place afin de déclencher les mécanismes dans SetCategorieEnJeu()")]
         private Categorie _CategorieEnJeuValeur;
@@ -69,6 +70,7 @@ namespace TP2_Base_de_données
 
             Participants = new List<Joueur>();
             _FormPoints = new DLG_Points();
+            _FormStats = new DLG_Stats();
         }
 
         private void Jeu_Load(object sender, EventArgs e)
@@ -262,14 +264,17 @@ namespace TP2_Base_de_données
 
         private void Jeu_FormClosing(object sender, FormClosingEventArgs e)
         {
+            TIMER_PanneauInfo.Stop();
+
+            _FormPoints.SeraAfficher = null;
+            _FormPoints.Close();
+
             foreach (var joueur in Participants)
             {
                 joueur.ClearPointageChange();
                 joueur.ResetPointage();
             }
             Participants.Clear();
-
-            TIMER_PanneauInfo.Stop();
         }
 
         private void BTN_Tourner_Click(object sender, EventArgs e)
@@ -347,7 +352,8 @@ namespace TP2_Base_de_données
 
         private void BTN_Stats_Click(object sender, EventArgs e)
         {
-            // TODO : Afficher form stats
+            _FormStats.SeraAfficher = sender as Joueur;
+            _FormStats.Show();
         }
         
         #endregion

@@ -41,8 +41,8 @@
             this.P_Joueur = new System.Windows.Forms.Panel();
             this.FLP_Categories = new System.Windows.Forms.FlowLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
-            this.PB_Geo = new System.Windows.Forms.ProgressBar();
-            this.LAB_PointsGeo = new System.Windows.Forms.Label();
+            this.PB_Géo = new System.Windows.Forms.ProgressBar();
+            this.LAB_PointsGéo = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.PB_His = new System.Windows.Forms.ProgressBar();
             this.LAB_PointsHis = new System.Windows.Forms.Label();
@@ -186,8 +186,8 @@
             this.FLP_Categories.Controls.Add(this.PB_Art);
             this.FLP_Categories.Controls.Add(this.LAB_PointsArt);
             this.FLP_Categories.Controls.Add(this.label12);
-            this.FLP_Categories.Controls.Add(this.PB_Geo);
-            this.FLP_Categories.Controls.Add(this.LAB_PointsGeo);
+            this.FLP_Categories.Controls.Add(this.PB_Géo);
+            this.FLP_Categories.Controls.Add(this.LAB_PointsGéo);
             this.FLP_Categories.Controls.Add(this.label5);
             this.FLP_Categories.Controls.Add(this.PB_His);
             this.FLP_Categories.Controls.Add(this.LAB_PointsHis);
@@ -213,25 +213,25 @@
             this.label12.Text = "Geographie";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // PB_Geo
+            // PB_Géo
             // 
-            this.PB_Geo.Location = new System.Drawing.Point(101, 33);
-            this.PB_Geo.Margin = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.PB_Geo.Maximum = 5;
-            this.PB_Geo.Name = "PB_Geo";
-            this.PB_Geo.Size = new System.Drawing.Size(166, 23);
-            this.PB_Geo.Step = 1;
-            this.PB_Geo.TabIndex = 32;
+            this.PB_Géo.Location = new System.Drawing.Point(101, 33);
+            this.PB_Géo.Margin = new System.Windows.Forms.Padding(5, 5, 0, 0);
+            this.PB_Géo.Maximum = 5;
+            this.PB_Géo.Name = "PB_Géo";
+            this.PB_Géo.Size = new System.Drawing.Size(166, 23);
+            this.PB_Géo.Step = 1;
+            this.PB_Géo.TabIndex = 32;
             // 
-            // LAB_PointsGeo
+            // LAB_PointsGéo
             // 
-            this.LAB_PointsGeo.AutoSize = true;
-            this.LAB_PointsGeo.Location = new System.Drawing.Point(269, 35);
-            this.LAB_PointsGeo.Margin = new System.Windows.Forms.Padding(2, 7, 2, 2);
-            this.LAB_PointsGeo.Name = "LAB_PointsGeo";
-            this.LAB_PointsGeo.Size = new System.Drawing.Size(36, 18);
-            this.LAB_PointsGeo.TabIndex = 34;
-            this.LAB_PointsGeo.Text = "0 / 5";
+            this.LAB_PointsGéo.AutoSize = true;
+            this.LAB_PointsGéo.Location = new System.Drawing.Point(269, 35);
+            this.LAB_PointsGéo.Margin = new System.Windows.Forms.Padding(2, 7, 2, 2);
+            this.LAB_PointsGéo.Name = "LAB_PointsGéo";
+            this.LAB_PointsGéo.Size = new System.Drawing.Size(36, 18);
+            this.LAB_PointsGéo.TabIndex = 34;
+            this.LAB_PointsGéo.Text = "0 / 5";
             // 
             // label5
             // 
@@ -300,6 +300,7 @@
             // DLG_Points
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(546, 121);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -312,7 +313,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DLG_Points";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DLG_Points_FormClosing);
-            this.Load += new System.EventHandler(this.DLG_Points_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.P_Joueur.ResumeLayout(false);
             this.P_Joueur.PerformLayout();
@@ -337,8 +337,8 @@
         private System.Windows.Forms.Panel P_Joueur;
         private System.Windows.Forms.FlowLayoutPanel FLP_Categories;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ProgressBar PB_Geo;
-        private System.Windows.Forms.Label LAB_PointsGeo;
+        private System.Windows.Forms.ProgressBar PB_Géo;
+        private System.Windows.Forms.Label LAB_PointsGéo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ProgressBar PB_His;
         private System.Windows.Forms.Label LAB_PointsHis;
