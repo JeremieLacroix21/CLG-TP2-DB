@@ -44,8 +44,8 @@
             this.P_Rangs = new System.Windows.Forms.Panel();
             this.BW_TimerRoue = new System.ComponentModel.BackgroundWorker();
             this.BW_TimerInfos = new System.ComponentModel.BackgroundWorker();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BTN_MenuPrincipal = new System.Windows.Forms.Button();
+            this.BTN_Classement = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.RTBX_Instructions = new System.Windows.Forms.RichTextBox();
             this.CC_Choisir = new Custom_Controls.ChoisirCategorie();
@@ -219,23 +219,25 @@
             // 
             this.BW_TimerInfos.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BW_TimerInfos_DoWork);
             // 
-            // button3
+            // BTN_MenuPrincipal
             // 
-            this.button3.Location = new System.Drawing.Point(668, 320);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 38);
-            this.button3.TabIndex = 27;
-            this.button3.Text = "Menu principal";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BTN_MenuPrincipal.Location = new System.Drawing.Point(668, 320);
+            this.BTN_MenuPrincipal.Name = "BTN_MenuPrincipal";
+            this.BTN_MenuPrincipal.Size = new System.Drawing.Size(121, 38);
+            this.BTN_MenuPrincipal.TabIndex = 27;
+            this.BTN_MenuPrincipal.Text = "Menu principal";
+            this.BTN_MenuPrincipal.UseVisualStyleBackColor = true;
+            this.BTN_MenuPrincipal.Click += new System.EventHandler(this.BTN_MenuPrincipal_Click);
             // 
-            // button4
+            // BTN_Classement
             // 
-            this.button4.Location = new System.Drawing.Point(668, 367);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 38);
-            this.button4.TabIndex = 28;
-            this.button4.Text = "Classement";
-            this.button4.UseVisualStyleBackColor = true;
+            this.BTN_Classement.Location = new System.Drawing.Point(668, 367);
+            this.BTN_Classement.Name = "BTN_Classement";
+            this.BTN_Classement.Size = new System.Drawing.Size(121, 38);
+            this.BTN_Classement.TabIndex = 28;
+            this.BTN_Classement.Text = "Classement";
+            this.BTN_Classement.UseVisualStyleBackColor = true;
+            this.BTN_Classement.Click += new System.EventHandler(this.BTN_Classement_Click);
             // 
             // label2
             // 
@@ -263,6 +265,7 @@
             // CC_Choisir
             // 
             this.CC_Choisir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.CC_Choisir.CategorieEstChoisie = null;
             this.CC_Choisir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CC_Choisir.Location = new System.Drawing.Point(599, 22);
             this.CC_Choisir.Name = "CC_Choisir";
@@ -298,8 +301,8 @@
             this.Controls.Add(this.CC_Choisir);
             this.Controls.Add(this.RTBX_Instructions);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.BTN_Classement);
+            this.Controls.Add(this.BTN_MenuPrincipal);
             this.Controls.Add(this.Q_Questionnaire);
             this.Controls.Add(this.BTN_Tourner);
             this.Controls.Add(this.P_Rangs);
@@ -346,8 +349,8 @@
         private System.ComponentModel.BackgroundWorker BW_TimerRoue;
         private System.ComponentModel.BackgroundWorker BW_TimerInfos;
         private Custom_Controls.Questionnaire Q_Questionnaire;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BTN_MenuPrincipal;
+        private System.Windows.Forms.Button BTN_Classement;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox RTBX_Instructions;
         private Custom_Controls.ChoisirCategorie CC_Choisir;

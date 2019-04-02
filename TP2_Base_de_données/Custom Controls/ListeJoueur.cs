@@ -25,9 +25,14 @@ namespace Custom_Controls
             InitializeComponent();
         }
 
-        public void Add(Joueur item)
+        public void Add(Joueur item, EventHandler onPointsClicked = null, EventHandler onStatsClicked = null)
         {
             var control = new ItemListeJoueur(item, Items.Count + 1);
+            if (onPointsClicked != null)
+                control.PointsButtonClicked += onPointsClicked;
+            if (onStatsClicked != null)
+                control.StatsButtonClicked += onStatsClicked;
+
             FLP_Content.Controls.Add(control);
             Items.Add(control);
             AutoSize = true;

@@ -88,6 +88,18 @@
     <Compile Include="DLG_Classement.Designer.cs">
       <DependentUpon>DLG_Classement.cs</DependentUpon>
     </Compile>
+    <Compile Include="DLG_Points.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DLG_Points.Designer.cs">
+      <DependentUpon>DLG_Points.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DLG_Stats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DLG_Stats.Designer.cs">
+      <DependentUpon>DLG_Stats.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global\CustomUtils.cs" />
     <Compile Include="Global\ExtensionsUtils.cs" />
     <Compile Include="Global\DBGlobal.cs" />
@@ -133,6 +145,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DLG_Classement.resx">
       <DependentUpon>DLG_Classement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DLG_Points.resx">
+      <DependentUpon>DLG_Points.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DLG_Stats.resx">
+      <DependentUpon>DLG_Stats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Jeu.resx">
       <DependentUpon>Jeu.cs</DependentUpon>

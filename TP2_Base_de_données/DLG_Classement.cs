@@ -12,6 +12,7 @@ namespace TP2_Base_de_données
 {
     public partial class DLG_Classement : Form
     {
+        // TODO : Faire si le temps
         public DLG_Classement()
         {
             InitializeComponent();
