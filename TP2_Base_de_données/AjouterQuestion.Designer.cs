@@ -41,12 +41,15 @@
             this.RBTN_A_Reponse = new System.Windows.Forms.RadioButton();
             this.RTBX_Question = new System.Windows.Forms.RichTextBox();
             this.BTN_Ajouterautre = new System.Windows.Forms.Button();
+            this.CBB_catégo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BTN_Ajouter
             // 
+            this.BTN_Ajouter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BTN_Ajouter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_Ajouter.Location = new System.Drawing.Point(2, 374);
+            this.BTN_Ajouter.Location = new System.Drawing.Point(16, 420);
             this.BTN_Ajouter.Name = "BTN_Ajouter";
             this.BTN_Ajouter.Size = new System.Drawing.Size(193, 48);
             this.BTN_Ajouter.TabIndex = 29;
@@ -73,6 +76,7 @@
             this.RTBX_D_Reponse.Size = new System.Drawing.Size(315, 35);
             this.RTBX_D_Reponse.TabIndex = 27;
             this.RTBX_D_Reponse.Text = "";
+            this.RTBX_D_Reponse.TextChanged += new System.EventHandler(this.RTBX_D_Reponse_TextChanged);
             // 
             // RTBX_C_Reponse
             // 
@@ -83,6 +87,7 @@
             this.RTBX_C_Reponse.Size = new System.Drawing.Size(315, 35);
             this.RTBX_C_Reponse.TabIndex = 26;
             this.RTBX_C_Reponse.Text = "";
+            this.RTBX_C_Reponse.TextChanged += new System.EventHandler(this.RTBX_C_Reponse_TextChanged);
             // 
             // RTBX_B_Reponse
             // 
@@ -93,6 +98,7 @@
             this.RTBX_B_Reponse.Size = new System.Drawing.Size(315, 35);
             this.RTBX_B_Reponse.TabIndex = 25;
             this.RTBX_B_Reponse.Text = "";
+            this.RTBX_B_Reponse.TextChanged += new System.EventHandler(this.RTBX_B_Reponse_TextChanged);
             // 
             // RTBX_A_Reponse
             // 
@@ -103,6 +109,7 @@
             this.RTBX_A_Reponse.Size = new System.Drawing.Size(315, 35);
             this.RTBX_A_Reponse.TabIndex = 24;
             this.RTBX_A_Reponse.Text = "";
+            this.RTBX_A_Reponse.TextChanged += new System.EventHandler(this.RTBX_A_Reponse_TextChanged);
             // 
             // label1
             // 
@@ -185,13 +192,15 @@
             this.RTBX_Question.Size = new System.Drawing.Size(375, 145);
             this.RTBX_Question.TabIndex = 18;
             this.RTBX_Question.Text = "";
+            this.RTBX_Question.TextChanged += new System.EventHandler(this.RTBX_Question_TextChanged);
             // 
             // BTN_Ajouterautre
             // 
+            this.BTN_Ajouterautre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BTN_Ajouterautre.BackColor = System.Drawing.SystemColors.Control;
             this.BTN_Ajouterautre.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BTN_Ajouterautre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_Ajouterautre.Location = new System.Drawing.Point(201, 374);
+            this.BTN_Ajouterautre.Location = new System.Drawing.Point(215, 420);
             this.BTN_Ajouterautre.Name = "BTN_Ajouterautre";
             this.BTN_Ajouterautre.Size = new System.Drawing.Size(208, 48);
             this.BTN_Ajouterautre.TabIndex = 30;
@@ -199,12 +208,34 @@
             this.BTN_Ajouterautre.UseVisualStyleBackColor = false;
             this.BTN_Ajouterautre.Click += new System.EventHandler(this.BTN_Ajouterautre_Click);
             // 
+            // CBB_catégo
+            // 
+            this.CBB_catégo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBB_catégo.FormattingEnabled = true;
+            this.CBB_catégo.Location = new System.Drawing.Point(214, 377);
+            this.CBB_catégo.Name = "CBB_catégo";
+            this.CBB_catégo.Size = new System.Drawing.Size(171, 24);
+            this.CBB_catégo.TabIndex = 31;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 374);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(196, 24);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Choisir la catégorie:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // AjouterQuestion
             // 
             this.AcceptButton = this.BTN_Ajouter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 426);
+            this.ClientSize = new System.Drawing.Size(435, 472);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.CBB_catégo);
             this.Controls.Add(this.BTN_Ajouterautre);
             this.Controls.Add(this.BTN_Ajouter);
             this.Controls.Add(this.label2);
@@ -220,7 +251,6 @@
             this.Controls.Add(this.RTBX_Question);
             this.Name = "AjouterQuestion";
             this.Text = "AjouterQuestion";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AjouterQuestion_FormClosed);
             this.Load += new System.EventHandler(this.AjouterQuestion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -242,5 +272,7 @@
         private System.Windows.Forms.RadioButton RBTN_A_Reponse;
         private System.Windows.Forms.RichTextBox RTBX_Question;
         private System.Windows.Forms.Button BTN_Ajouterautre;
+        private System.Windows.Forms.ComboBox CBB_catégo;
+        private System.Windows.Forms.Label label3;
     }
 }

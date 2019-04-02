@@ -17,14 +17,12 @@ namespace TP2_Base_de_données
     {
 
         private ValidationProvider validation;
-        
+        public static List<Joueur> LISTEPRINCIPAL_;
 
         public JoueurManager()
         {
             InitializeComponent();
         }
-
-        
 
         private void JoueurManager_Load(object sender, EventArgs e)
         {
@@ -108,6 +106,7 @@ namespace TP2_Base_de_données
             lejoueur1.Prenom = TBX_Prénom.Text;
             lejoueur1.AliasJoueur = TBX_Nom.Text;
             lejoueur1.Ajouter();
+            DBGlobal.Joueurs.Add(lejoueur1);
             CLB_joueurs.Items.Add(lejoueur1.AliasJoueur);
 
         }

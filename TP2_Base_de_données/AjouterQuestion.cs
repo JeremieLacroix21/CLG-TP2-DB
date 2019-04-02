@@ -24,6 +24,7 @@ namespace TP2_Base_de_données
 
         private void AjouterQuestion_Load(object sender, EventArgs e)
         {
+            
             validation = new ValidationProvider(this);
             validation.AddControlToValidate(RTBX_Question, Validate_question);
             validation.AddControlToValidate(RTBX_A_Reponse, Validate_A_Reponse);
@@ -31,21 +32,35 @@ namespace TP2_Base_de_données
             validation.AddControlToValidate(RTBX_C_Reponse, Validate_C_Reponse);
             validation.AddControlToValidate(RTBX_D_Reponse, Validate_D_Reponse);
             validation.AddControlToValidate(label2, validate_radiobutton);
+            Init_UI();
         }
 
+        private void Init_UI()
+        {
+                BTN_Ajouter.Enabled = false;
+                BTN_Ajouterautre.Enabled = false;
+            
+            foreach (Categorie lacat in DBGlobal.Categories)
+            {
+                CBB_catégo.Items.Add(lacat.Nom);
+            }
+            CBB_catégo.SelectedIndex = 0;
+            RBTN_A_Reponse.Checked = true;
+        }
+        
 
         private void AjouterlaQuestion()
         {
-            //Question newq = new Question();
-            //newq.Categorie = DBGlobal.Categories[0];
-            //newq.Enonce = RTBX_Question.Text;
-            //Reponse[] Tab = new Reponse[4];
-            //Tab[0] = new Reponse { Description = RTBX_A_Reponse.Text, EstBonne = RBTN_A_Reponse.Checked, NumReponse = "A", Question = newq };
-            //Tab[1] = new Reponse { Description = RTBX_B_Reponse.Text, EstBonne = RBTN_B_Reponse.Checked, NumReponse = "B", Question = newq };
-            //Tab[2] = new Reponse { Description = RTBX_C_Reponse.Text, EstBonne = RBTN_C_Reponse.Checked, NumReponse = "C", Question = newq };
-            //Tab[3] = new Reponse { Description = RTBX_D_Reponse.Text, EstBonne = RBTN_D_Reponse.Checked, NumReponse = "D", Question = newq };
-            //newq.Reponses = Tab;
-            //newq.Ajouter();
+            Question newq = new Question();
+            newq.Categorie = DBGlobal.Categories[CBB_catégo.SelectedIndex];
+            newq.Enonce = RTBX_Question.Text;
+            Reponse[] Tab = new Reponse[4];
+            Tab[0] = new Reponse { Description = RTBX_A_Reponse.Text, EstBonne = RBTN_A_Reponse.Checked, NumReponse = "A", Question = newq };
+            Tab[1] = new Reponse { Description = RTBX_B_Reponse.Text, EstBonne = RBTN_B_Reponse.Checked, NumReponse = "B", Question = newq };
+            Tab[2] = new Reponse { Description = RTBX_C_Reponse.Text, EstBonne = RBTN_C_Reponse.Checked, NumReponse = "C", Question = newq };
+            Tab[3] = new Reponse { Description = RTBX_D_Reponse.Text, EstBonne = RBTN_D_Reponse.Checked, NumReponse = "D", Question = newq };
+            newq.Reponses = Tab;
+            newq.Ajouter();
         }
 
 
@@ -103,11 +118,13 @@ namespace TP2_Base_de_données
 
         private void BTN_Ajouter_Click(object sender, EventArgs e)
         {
+            AjouterlaQuestion();
             this.Close();
         }
 
         private void BTN_Ajouterautre_Click(object sender, EventArgs e)
         {
+            AjouterlaQuestion();
             RTBX_Question.Text = "";
             RTBX_A_Reponse.Text = "";
             RTBX_B_Reponse.Text = "";
@@ -118,16 +135,83 @@ namespace TP2_Base_de_données
             RBTN_C_Reponse.Checked = false;
             RBTN_D_Reponse.Checked = false;
             this.Refresh();
-            AjouterQuestion ajout2 = new AjouterQuestion();
-            this.Close();
-            ajout2.Show();
         }
 
-        private void AjouterQuestion_FormClosed(object sender, FormClosedEventArgs e)
+        private void RTBX_Question_TextChanged(object sender, EventArgs e)
         {
-            AjouterlaQuestion();
+            if (validation.FormValid())
+            {
+                BTN_Ajouter.Enabled = true;
+                BTN_Ajouterautre.Enabled = true;
+            }
+            else
+            {
+                BTN_Ajouter.Enabled =false;
+                BTN_Ajouterautre.Enabled = false;
+
+            }
         }
 
+        private void RTBX_A_Reponse_TextChanged(object sender, EventArgs e)
+        {
+            if (validation.FormValid())
+            {
+                BTN_Ajouter.Enabled = true;
+                BTN_Ajouterautre.Enabled = true;
+            }
+            else
+            {
+                BTN_Ajouter.Enabled = false;
+                BTN_Ajouterautre.Enabled = false;
 
+            }
+        }
+
+        private void RTBX_B_Reponse_TextChanged(object sender, EventArgs e)
+        {
+            if (validation.FormValid())
+            {
+                BTN_Ajouter.Enabled = true;
+                BTN_Ajouterautre.Enabled = true;
+            }
+            else
+            {
+                BTN_Ajouter.Enabled = false;
+                BTN_Ajouterautre.Enabled = false;
+
+            }
+        }
+
+        private void RTBX_C_Reponse_TextChanged(object sender, EventArgs e)
+        {
+            if (validation.FormValid())
+            {
+                BTN_Ajouter.Enabled = true;
+                BTN_Ajouterautre.Enabled = true;
+            }
+            else
+            {
+                BTN_Ajouter.Enabled = false;
+                BTN_Ajouterautre.Enabled = false;
+
+            }
+        }
+
+        private void RTBX_D_Reponse_TextChanged(object sender, EventArgs e)
+        {
+            if (validation.FormValid())
+            {
+                BTN_Ajouter.Enabled = true;
+                BTN_Ajouterautre.Enabled = true;
+            }
+            else
+            {
+                BTN_Ajouter.Enabled = false;
+                BTN_Ajouterautre.Enabled = false;
+
+            }
+        }
+
+      
     }
 }
