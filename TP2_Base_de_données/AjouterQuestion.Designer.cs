@@ -67,7 +67,7 @@
             // RTBX_D_Reponse
             // 
             this.RTBX_D_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RTBX_D_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RTBX_D_Reponse.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RTBX_D_Reponse.Location = new System.Drawing.Point(71, 333);
             this.RTBX_D_Reponse.Name = "RTBX_D_Reponse";
             this.RTBX_D_Reponse.Size = new System.Drawing.Size(315, 35);
@@ -77,7 +77,7 @@
             // RTBX_C_Reponse
             // 
             this.RTBX_C_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RTBX_C_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RTBX_C_Reponse.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RTBX_C_Reponse.Location = new System.Drawing.Point(71, 292);
             this.RTBX_C_Reponse.Name = "RTBX_C_Reponse";
             this.RTBX_C_Reponse.Size = new System.Drawing.Size(315, 35);
@@ -87,7 +87,7 @@
             // RTBX_B_Reponse
             // 
             this.RTBX_B_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RTBX_B_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RTBX_B_Reponse.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RTBX_B_Reponse.Location = new System.Drawing.Point(71, 251);
             this.RTBX_B_Reponse.Name = "RTBX_B_Reponse";
             this.RTBX_B_Reponse.Size = new System.Drawing.Size(315, 35);
@@ -97,7 +97,7 @@
             // RTBX_A_Reponse
             // 
             this.RTBX_A_Reponse.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RTBX_A_Reponse.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RTBX_A_Reponse.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RTBX_A_Reponse.Location = new System.Drawing.Point(71, 210);
             this.RTBX_A_Reponse.Name = "RTBX_A_Reponse";
             this.RTBX_A_Reponse.Size = new System.Drawing.Size(315, 35);
@@ -178,7 +178,7 @@
             // RTBX_Question
             // 
             this.RTBX_Question.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RTBX_Question.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RTBX_Question.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.RTBX_Question.Location = new System.Drawing.Point(12, 26);
             this.RTBX_Question.Margin = new System.Windows.Forms.Padding(2);
             this.RTBX_Question.Name = "RTBX_Question";
@@ -188,13 +188,15 @@
             // 
             // BTN_Ajouterautre
             // 
+            this.BTN_Ajouterautre.BackColor = System.Drawing.SystemColors.Control;
             this.BTN_Ajouterautre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_Ajouterautre.Location = new System.Drawing.Point(192, 374);
+            this.BTN_Ajouterautre.Location = new System.Drawing.Point(201, 374);
             this.BTN_Ajouterautre.Name = "BTN_Ajouterautre";
-            this.BTN_Ajouterautre.Size = new System.Drawing.Size(193, 48);
+            this.BTN_Ajouterautre.Size = new System.Drawing.Size(208, 48);
             this.BTN_Ajouterautre.TabIndex = 30;
             this.BTN_Ajouterautre.Text = "Ajouter une autre";
-            this.BTN_Ajouterautre.UseVisualStyleBackColor = true;
+            this.BTN_Ajouterautre.UseVisualStyleBackColor = false;
+            this.BTN_Ajouterautre.Click += new System.EventHandler(this.BTN_Ajouterautre_Click);
             // 
             // AjouterQuestion
             // 
@@ -217,6 +219,7 @@
             this.Controls.Add(this.RTBX_Question);
             this.Name = "AjouterQuestion";
             this.Text = "AjouterQuestion";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AjouterQuestion_FormClosed);
             this.Load += new System.EventHandler(this.AjouterQuestion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
