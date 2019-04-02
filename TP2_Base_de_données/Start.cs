@@ -14,10 +14,17 @@ namespace TP2_Base_de_données
 {
     public partial class Start : Form
     {
+
+        
         private List<Joueur> Participants;
         public Start()
         {
+           
             InitializeComponent();
+            foreach (Joueur unjoueur in DBGlobal.Joueurs)
+            {
+                Participants.Add(unjoueur);
+            }
         }
 
         private void Start_Load(object sender, EventArgs e)
@@ -42,6 +49,7 @@ namespace TP2_Base_de_données
         private void BTN_Configurerjoueur_Click(object sender, EventArgs e)
         {
             JoueurManager manager = new JoueurManager();
+
             manager.Show();
         }
     }

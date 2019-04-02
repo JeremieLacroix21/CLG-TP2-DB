@@ -111,6 +111,7 @@
             this.CLB_joueurs.Size = new System.Drawing.Size(232, 191);
             this.CLB_joueurs.TabIndex = 9;
             this.CLB_joueurs.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CLB_joueurs_ItemCheck);
+            this.CLB_joueurs.SelectedIndexChanged += new System.EventHandler(this.CLB_joueurs_SelectedIndexChanged);
             // 
             // label3
             // 
