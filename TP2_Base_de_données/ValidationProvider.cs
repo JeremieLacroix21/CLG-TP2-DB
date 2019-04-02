@@ -277,7 +277,7 @@ namespace Validation
         }
 
         /// Indique si le formulaire est valide en vérifiant tous les contrôles à valider
-        private bool FormValid()
+        public bool FormValid()
         {
             foreach (ControlToValidate ctv in _ControlsToValidate)
             {
