@@ -17,7 +17,7 @@ namespace TP2_Base_de_données
     {
 
         private ValidationProvider validation;
-        private List<Joueur> Listeprincipal;
+        public List<Joueur> Listeprincipal;
 
 
         public JoueurManager(List<Joueur> part)
