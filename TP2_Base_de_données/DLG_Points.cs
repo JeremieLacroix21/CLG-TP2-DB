@@ -45,7 +45,6 @@ namespace TP2_Base_de_données
             _CategoriesPB.AddRange(PB_Art, PB_Géo, PB_His, PB_Spo);
             _CategoriesLAB.AddRange(LAB_PointsArt, LAB_PointsGéo, LAB_PointsHis, LAB_PointsSpo);
             _SeraAfficher = null;
-            
         }
 
         private void UpdateInfosJoueur()

@@ -181,7 +181,7 @@ namespace Objets_BD
                 while (reader.Read()) 
                 {
                     Categorie categorie = DBGlobal.Categories.Find(c => c.CodeCategorie == reader.GetString(0));
-                    int score = reader.GetInt32(0);
+                    int score = reader.GetInt32(2);
                     resultat.Add(categorie, score);
                 }
                 reader.Close();
@@ -213,7 +213,7 @@ namespace Objets_BD
                 OracleDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Categorie categorie = DBGlobal.Categories.Find(c => c.Nom == reader.GetString(0));
+                    Categorie categorie = DBGlobal.Categories.Find(c => c.CodeCategorie == reader.GetString(0));
                     resultat.Add(categorie);
                 }
                 reader.Close();
@@ -227,15 +227,15 @@ namespace Objets_BD
         }
 
         /// <summary>
-        /// Retourne la catégorie la plus faible du joueur
+        /// Retourne la catégorie étant la plus faible/forte du joueur
         /// </summary>
-        public Categorie GetCategorieFaible()
+        public Categorie GetCategorieForce(bool estFaible = true)
         {
             Categorie resultat = null;
 
             try
             {
-                OracleCommand command = new OracleCommand("STATISTIQUES.GetCategorieFaible", DBGlobal.Connexion);
+                OracleCommand command = new OracleCommand(estFaible ? "STATISTIQUES.GetCategorieFaible" : "STATISTIQUES.GetCategorieForte" , DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("resultat", OracleDbType.RefCursor, ParameterDirection.ReturnValue),
@@ -249,7 +249,7 @@ namespace Objets_BD
             }
             catch (Exception sqlExcept)
             {
-                MessageBox.Show("Joueur.GetCategorieFaible : " + sqlExcept.Message);
+                MessageBox.Show("Joueur.GetCategorieForce : " + sqlExcept.Message);
             }
 
             return resultat;
