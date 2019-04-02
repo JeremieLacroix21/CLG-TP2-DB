@@ -69,9 +69,10 @@ namespace Objets_BD
         /// </summary>
         public void ResetPointage()
         {
-            foreach(var pair in _Pointage)
+            foreach (var categorie in DBGlobal.Categories)
             {
-                this[pair.Key] = 0;
+                if (_Pointage.ContainsKey(categorie))
+                    _Pointage[categorie] = 0;
             }
         }
 

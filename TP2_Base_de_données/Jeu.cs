@@ -40,6 +40,8 @@ namespace TP2_Base_de_données
         private System.Timers.Timer TIMER_Roue { get; set; }
         #endregion
 
+        private DLG_Points _FormPoints { get; set; }
+
         [Obsolete("Utiliser _CategorieEnJeu à la place afin de déclencher les mécanismes dans SetCategorieEnJeu()")]
         private Categorie _CategorieEnJeuValeur;
         private void SetCategorieEnJeu(Categorie value) {
@@ -66,6 +68,7 @@ namespace TP2_Base_de_données
             InitializeComponent();
 
             Participants = new List<Joueur>();
+            _FormPoints = new DLG_Points();
         }
 
         private void Jeu_Load(object sender, EventArgs e)
@@ -96,7 +99,10 @@ namespace TP2_Base_de_données
         private void InitJoueurs()
         {
             // Ajouter les joueurs à l'interface
-            LJ_Participants.AddRange(Participants.ToArray());
+            foreach(var joueur in Participants)
+            {
+                LJ_Participants.Add(joueur, BTN_Points_Click, BTN_Stats_Click);
+            }
         }
 
         private void InitEventHandlers()
@@ -320,6 +326,30 @@ namespace TP2_Base_de_données
             this.Invoke(new UpdateControls_(UpdateInfosVisible));
         }
 
+        private void BTN_MenuPrincipal_Click(object sender, EventArgs e)
+        {
+            var resultat = MessageBox.Show("Êtes-vous certain de vouloir quitter la partie ?", "Confirmer Retour au Menu",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (resultat == DialogResult.Yes)
+                Close();
+        }
+
+        private void BTN_Classement_Click(object sender, EventArgs e)
+        {
+            // TODO : Afficher form classement
+        }
+
+        private void BTN_Points_Click(object sender, EventArgs e)
+        {
+            _FormPoints.SeraAfficher = sender as Joueur;
+            _FormPoints.Show();
+        }
+
+        private void BTN_Stats_Click(object sender, EventArgs e)
+        {
+            // TODO : Afficher form stats
+        }
+        
         #endregion
     }
 }

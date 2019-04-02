@@ -65,12 +65,12 @@ namespace Custom_Controls
 
         private void BTN_Points_Click(object sender, EventArgs e)
         {
-            PointsButtonClicked?.Invoke(sender, e);
+            PointsButtonClicked?.Invoke(Joueur, e);
         }
 
         private void BTN_Stats_Click(object sender, EventArgs e)
         {
-            StatsButtonClicked?.Invoke(sender, e);
+            StatsButtonClicked?.Invoke(Joueur, e);
         }
     }
 }
