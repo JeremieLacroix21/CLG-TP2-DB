@@ -55,6 +55,12 @@
     <Compile Include="AjouterQuestion.Designer.cs">
       <DependentUpon>AjouterQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Controls\ChoisirCategorie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\ChoisirCategorie.Designer.cs">
+      <DependentUpon>ChoisirCategorie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom Controls\ItemListeJoueur.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     <Compile Include="ValidationProvider.cs" />
     <EmbeddedResource Include="AjouterQuestion.resx">
       <DependentUpon>AjouterQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Controls\ChoisirCategorie.resx">
+      <DependentUpon>ChoisirCategorie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\ItemListeJoueur.resx">
       <DependentUpon>ItemListeJoueur.cs</DependentUpon>

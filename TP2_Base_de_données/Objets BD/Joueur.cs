@@ -149,8 +149,8 @@ namespace Objets_BD
                 OracleCommand command = new OracleCommand("STATISTIQUES.IncrScore", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
-                    new OracleParameter("P_codeCategorie", OracleDbType.Varchar2, gagnee.CodeCategorie, ParameterDirection.Input),
-                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, this.AliasJoueur, ParameterDirection.Input)
+                    new OracleParameter("P_codeCategorie", OracleDbType.Char, 1, gagnee.CodeCategorie, ParameterDirection.Input),
+                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, 20, this.AliasJoueur, ParameterDirection.Input)
                 );
                 command.ExecuteNonQuery();
             }
@@ -173,7 +173,7 @@ namespace Objets_BD
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("resultat", OracleDbType.RefCursor, ParameterDirection.ReturnValue),
-                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, this.AliasJoueur, ParameterDirection.Input)
+                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, 20, this.AliasJoueur, ParameterDirection.Input)
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
@@ -206,7 +206,7 @@ namespace Objets_BD
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("resultat", OracleDbType.RefCursor, ParameterDirection.ReturnValue),
-                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, this.AliasJoueur, ParameterDirection.Input)
+                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, 20, this.AliasJoueur, ParameterDirection.Input)
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
@@ -238,7 +238,7 @@ namespace Objets_BD
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("resultat", OracleDbType.RefCursor, ParameterDirection.ReturnValue),
-                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, this.AliasJoueur, ParameterDirection.Input)
+                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, 20, this.AliasJoueur, ParameterDirection.Input)
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
@@ -264,7 +264,7 @@ namespace Objets_BD
                 OracleCommand command = new OracleCommand("GESTIONJOUEURS.SupprJoueur", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
-                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, this.AliasJoueur, ParameterDirection.Input)
+                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, 20, this.AliasJoueur, ParameterDirection.Input)
                 );
                 command.ExecuteNonQuery();
             }
@@ -291,9 +291,9 @@ namespace Objets_BD
                 OracleCommand command = new OracleCommand("GESTIONJOUEURS.InsertJoueur", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
-                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, this.AliasJoueur, ParameterDirection.Input),
-                    new OracleParameter("P_nom", OracleDbType.Varchar2, this.Nom, ParameterDirection.Input),
-                    new OracleParameter("P_prenom", OracleDbType.Varchar2, this.Prenom, ParameterDirection.Input)
+                    new OracleParameter("P_aliasJoueur", OracleDbType.Varchar2, 20, this.AliasJoueur, ParameterDirection.Input),
+                    new OracleParameter("P_nom", OracleDbType.Varchar2, 40, this.Nom, ParameterDirection.Input),
+                    new OracleParameter("P_prenom", OracleDbType.Varchar2, 40, this.Prenom, ParameterDirection.Input)
                 );
                 command.ExecuteNonQuery();
             }

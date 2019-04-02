@@ -36,9 +36,10 @@
             // 
             // BTN_jouer
             // 
-            this.BTN_jouer.Location = new System.Drawing.Point(12, 12);
+            this.BTN_jouer.Location = new System.Drawing.Point(9, 10);
+            this.BTN_jouer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BTN_jouer.Name = "BTN_jouer";
-            this.BTN_jouer.Size = new System.Drawing.Size(279, 97);
+            this.BTN_jouer.Size = new System.Drawing.Size(209, 79);
             this.BTN_jouer.TabIndex = 0;
             this.BTN_jouer.Text = "commencer partie";
             this.BTN_jouer.UseVisualStyleBackColor = true;
@@ -46,18 +47,20 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(297, 115);
+            this.button2.Location = new System.Drawing.Point(223, 93);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(279, 97);
+            this.button2.Size = new System.Drawing.Size(209, 79);
             this.button2.TabIndex = 2;
             this.button2.Text = "réglages";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // BTN_AjouterQuestion
             // 
-            this.BTN_AjouterQuestion.Location = new System.Drawing.Point(12, 115);
+            this.BTN_AjouterQuestion.Location = new System.Drawing.Point(9, 93);
+            this.BTN_AjouterQuestion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BTN_AjouterQuestion.Name = "BTN_AjouterQuestion";
-            this.BTN_AjouterQuestion.Size = new System.Drawing.Size(279, 97);
+            this.BTN_AjouterQuestion.Size = new System.Drawing.Size(209, 79);
             this.BTN_AjouterQuestion.TabIndex = 3;
             this.BTN_AjouterQuestion.Text = "Ajouter question";
             this.BTN_AjouterQuestion.UseVisualStyleBackColor = true;
@@ -65,24 +68,27 @@
             // 
             // BTN_Ajouterjoueur
             // 
-            this.BTN_Ajouterjoueur.Location = new System.Drawing.Point(297, 12);
+            this.BTN_Ajouterjoueur.Location = new System.Drawing.Point(223, 10);
+            this.BTN_Ajouterjoueur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BTN_Ajouterjoueur.Name = "BTN_Ajouterjoueur";
-            this.BTN_Ajouterjoueur.Size = new System.Drawing.Size(279, 97);
+            this.BTN_Ajouterjoueur.Size = new System.Drawing.Size(209, 79);
             this.BTN_Ajouterjoueur.TabIndex = 4;
             this.BTN_Ajouterjoueur.Text = "configurer joueurs";
             this.BTN_Ajouterjoueur.UseVisualStyleBackColor = true;
             // 
             // Start
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 224);
+            this.ClientSize = new System.Drawing.Size(442, 182);
             this.Controls.Add(this.BTN_Ajouterjoueur);
             this.Controls.Add(this.BTN_AjouterQuestion);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.BTN_jouer);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Start";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Start";
             this.Load += new System.EventHandler(this.Start_Load);
             this.ResumeLayout(false);

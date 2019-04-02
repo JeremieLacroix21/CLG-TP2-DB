@@ -64,6 +64,8 @@ namespace TP2_Base_de_données
         public Jeu()
         {
             InitializeComponent();
+
+            Participants = new List<Joueur>();
         }
 
         private void Jeu_Load(object sender, EventArgs e)
@@ -72,7 +74,6 @@ namespace TP2_Base_de_données
             InitTimers();
             InitEventHandlers();
             InitJoueurs();
-            InitPointage();
             // Lancer le timer utilisé pour alterner entre le panneau d'infos et le panneau des classements
             BW_TimerInfos.RunWorkerAsync();
             // Update initial du panneau des classements ("Aucuns points pour l'instant")
@@ -98,18 +99,6 @@ namespace TP2_Base_de_données
             LJ_Participants.AddRange(Participants.ToArray());
         }
 
-        // TODO : Migrer cette méthode vers le form Start
-        private void InitPointage()
-        {
-            foreach (var categorie in DBGlobal.Categories)
-            {
-                foreach (var joueur in Participants)
-                {
-                    joueur.AjouterPointage(categorie, 0);
-                }
-            }
-        }
-
         private void InitEventHandlers()
         {
             // Chaque fois qu'une nouvelle instruction sera écrite dans RTBX_Instructions, la zone de texte clignotera
@@ -117,11 +106,13 @@ namespace TP2_Base_de_données
                 CustomUtils.Blink(RTBX_Instructions, SystemColors.MenuHighlight, SystemColors.ControlLightLight, 100, 4);
             };
 
-            // Chaque fois que la catégorie va changer, le panneau d'infos sera mise à jour
+            // Chaque fois que la catégorie va changer, le panneau d'infos, la roue et ChoisirCategorie seront mise à jour selon le contexte
             _CategorieEnJeuChange += (sender, e) => {
                 if (_CategorieEnJeu == null) {
                     this.Invoke(new UpdateControls_(UpdateInfosVisible));
                     this.Invoke(new UpdateControls(UpdateRoue), _CategorieEnJeu);
+                } else if (_CategorieEnJeu.Nom == DBGlobal.CHOISIR.Nom) {
+                    this.Invoke(new UpdateControls_(() => { CC_Choisir.Visible = true; }));
                 } else {
                     this.Invoke(new UpdateControls_(UpdateInfos));
                     this.Invoke(new UpdateControls_(ChargerQuestion));
@@ -136,7 +127,13 @@ namespace TP2_Base_de_données
                 };
             }
 
+            // Chaque fois que l'utilisateur clique le bouton Répondre du questionnaire, gerer la réponse
             Q_Questionnaire.RespondClicked += GererReponse;
+
+            // Chaque fois qu'une catégorie est choisie par l'utilisateur dans le contrôle ChoisirCategorie, l'assigner à _CategorieEnJeu
+            CC_Choisir.CategorieEstChoisie += (sender, e) => {
+                this.Invoke(new UpdateControls_(() => { _CategorieEnJeu = CC_Choisir.Choisie; }));
+            };
         }
         #endregion
 
@@ -262,7 +259,11 @@ namespace TP2_Base_de_données
             foreach (var joueur in Participants)
             {
                 joueur.ClearPointageChange();
+                joueur.ResetPointage();
             }
+            Participants.Clear();
+
+            TIMER_PanneauInfo.Stop();
         }
 
         private void BTN_Tourner_Click(object sender, EventArgs e)
@@ -288,7 +289,11 @@ namespace TP2_Base_de_données
             List<Categorie> categoriesGagnees = _EnTrainDeJouer.GetCategoriesGagnees_Local();
             do
             {
-                categorie = DBGlobal.Categories[rand.Next() % DBGlobal.Categories.Count];
+                int index = rand.Next() % DBGlobal.Categories.Count + 1;
+                if (index == DBGlobal.Categories.Count)
+                    categorie = DBGlobal.CHOISIR;
+                else
+                    categorie = DBGlobal.Categories[index];
                 // La catégorie sélectionner ne pourra par être la même que la précédente et ne pourra pas être une catégorie où le joueur courant à déjà gagné
             } while ((_CategoriePrecedente != null && categorie == _CategoriePrecedente) || categoriesGagnees.Contains(categorie));
             _CategoriePrecedente = categorie;
@@ -297,11 +302,12 @@ namespace TP2_Base_de_données
 
             if (TIMER_Roue.Interval >= STOPPER_ROUE)
             {
+                TIMER_Roue.Stop();
+
                 _CategorieEnJeu = categorie;
                 _CategoriePrecedente = categorie;
 
                 TIMER_Roue.Interval = 100;
-                TIMER_Roue.Stop();
             }
             else
             {

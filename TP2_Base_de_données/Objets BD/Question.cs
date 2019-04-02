@@ -36,7 +36,7 @@ namespace Objets_BD
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("resultat", OracleDbType.RefCursor, ParameterDirection.ReturnValue),
-                    new OracleParameter("P_numQuestion", OracleDbType.Char, this.NumQuestion, ParameterDirection.Input)
+                    new OracleParameter("P_numQuestion", OracleDbType.Varchar2, 20, this.NumQuestion, ParameterDirection.Input)
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
@@ -68,8 +68,8 @@ namespace Objets_BD
                 OracleCommand command = new OracleCommand("GESTIONQUESTIONS.SetRepondu", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
-                    new OracleParameter("P_numQuestion", OracleDbType.Varchar2, this.NumQuestion, ParameterDirection.Input),
-                    new OracleParameter("P_nouvRepondu", OracleDbType.Char, "Y", ParameterDirection.Input)
+                    new OracleParameter("P_numQuestion", OracleDbType.Varchar2, 20, this.NumQuestion, ParameterDirection.Input),
+                    new OracleParameter("P_nouvRepondu", OracleDbType.Char, 1, "Y", ParameterDirection.Input)
                 );
                 command.ExecuteNonQuery();
             }
@@ -97,8 +97,8 @@ namespace Objets_BD
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("P_numQuestion", OracleDbType.Varchar2, 20, ParameterDirection.InputOutput),
-                    new OracleParameter("P_enonce", OracleDbType.Varchar2, 20, this.Enonce, ParameterDirection.Input),
-                    new OracleParameter("P_codeCategorie", OracleDbType.Varchar2, 20, this.Categorie.CodeCategorie, ParameterDirection.Input)
+                    new OracleParameter("P_enonce", OracleDbType.Clob, this.Enonce, ParameterDirection.Input),
+                    new OracleParameter("P_codeCategorie", OracleDbType.Char, 1, this.Categorie.CodeCategorie, ParameterDirection.Input)
                 );
 
                 command.ExecuteNonQuery();
@@ -146,7 +146,7 @@ namespace Objets_BD
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
                     new OracleParameter("resultat", OracleDbType.RefCursor, ParameterDirection.ReturnValue),
-                    new OracleParameter("P_codeCategorie", OracleDbType.Varchar2, categorie.CodeCategorie, ParameterDirection.Input)
+                    new OracleParameter("P_codeCategorie", OracleDbType.Char, 1, categorie.CodeCategorie, ParameterDirection.Input)
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
