@@ -36,16 +36,16 @@ namespace TP2_Base_de_données
 
         private void AjouterlaQuestion()
         {
-            Question newq = new Question();
-            newq.Categorie = DBGlobal.Categories[0];
-            newq.Enonce = RTBX_Question.Text;
-            Reponse[] Tab = new Reponse[4];
-            Tab[0] = new Reponse { Description = RTBX_A_Reponse.Text, EstBonne = RBTN_A_Reponse.Checked, NumReponse = "A", Question = newq };
-            Tab[1] = new Reponse { Description = RTBX_B_Reponse.Text, EstBonne = RBTN_B_Reponse.Checked, NumReponse = "B", Question = newq };
-            Tab[2] = new Reponse { Description = RTBX_C_Reponse.Text, EstBonne = RBTN_C_Reponse.Checked, NumReponse = "C", Question = newq };
-            Tab[3] = new Reponse { Description = RTBX_D_Reponse.Text, EstBonne = RBTN_D_Reponse.Checked, NumReponse = "D", Question = newq };
-            newq.Reponses = Tab;
-            newq.Ajouter();
+            //Question newq = new Question();
+            //newq.Categorie = DBGlobal.Categories[0];
+            //newq.Enonce = RTBX_Question.Text;
+            //Reponse[] Tab = new Reponse[4];
+            //Tab[0] = new Reponse { Description = RTBX_A_Reponse.Text, EstBonne = RBTN_A_Reponse.Checked, NumReponse = "A", Question = newq };
+            //Tab[1] = new Reponse { Description = RTBX_B_Reponse.Text, EstBonne = RBTN_B_Reponse.Checked, NumReponse = "B", Question = newq };
+            //Tab[2] = new Reponse { Description = RTBX_C_Reponse.Text, EstBonne = RBTN_C_Reponse.Checked, NumReponse = "C", Question = newq };
+            //Tab[3] = new Reponse { Description = RTBX_D_Reponse.Text, EstBonne = RBTN_D_Reponse.Checked, NumReponse = "D", Question = newq };
+            //newq.Reponses = Tab;
+            //newq.Ajouter();
         }
 
 
@@ -118,12 +118,16 @@ namespace TP2_Base_de_données
             RBTN_C_Reponse.Checked = false;
             RBTN_D_Reponse.Checked = false;
             this.Refresh();
+            AjouterQuestion ajout2 = new AjouterQuestion();
+            this.Close();
+            ajout2.Show();
         }
 
         private void AjouterQuestion_FormClosed(object sender, FormClosedEventArgs e)
         {
             AjouterlaQuestion();
-
         }
+
+
     }
 }

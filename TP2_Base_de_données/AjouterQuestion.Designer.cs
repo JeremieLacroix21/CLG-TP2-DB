@@ -189,6 +189,7 @@
             // BTN_Ajouterautre
             // 
             this.BTN_Ajouterautre.BackColor = System.Drawing.SystemColors.Control;
+            this.BTN_Ajouterautre.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BTN_Ajouterautre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_Ajouterautre.Location = new System.Drawing.Point(201, 374);
             this.BTN_Ajouterautre.Name = "BTN_Ajouterautre";
