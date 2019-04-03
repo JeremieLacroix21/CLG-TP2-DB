@@ -286,8 +286,10 @@
             // LJ_Participants
             // 
             this.LJ_Participants.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LJ_Participants.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.LJ_Participants.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LJ_Participants.Location = new System.Drawing.Point(5, 22);
+            this.LJ_Participants.MinimumSize = new System.Drawing.Size(259, 266);
             this.LJ_Participants.Name = "LJ_Participants";
             this.LJ_Participants.SelectedIndex = -1;
             this.LJ_Participants.Size = new System.Drawing.Size(259, 266);

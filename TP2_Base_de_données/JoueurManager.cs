@@ -15,15 +15,13 @@ namespace TP2_Base_de_données
 {
     public partial class JoueurManager : Form
     {
+        private ValidationProvider _Validation { get; set; }
+        public List<Joueur> Listeprincipal { get; private set; }
 
-        private ValidationProvider validation;
-        public List<Joueur> Listeprincipal;
-
-
-        public JoueurManager(List<Joueur> part)
+        public JoueurManager()
         {
             InitializeComponent();
-            Listeprincipal = part;
+            Listeprincipal = new List<Joueur>();
         }
 
         private void JoueurManager_Load(object sender, EventArgs e)
@@ -31,81 +29,102 @@ namespace TP2_Base_de_données
             Init_UI();
             BTN_Ajouter.Enabled = false;
             BTN_supprimer.Enabled = false;
-            validation = new ValidationProvider(this);
-            validation.AddControlToValidate(TBX_Nom, Validate_TBX_nom);
-            validation.AddControlToValidate(TBX_Prénom, Validate_TBX_Prénom);
-            validation.AddControlToValidate(TBX_Lastname, Validate_TBX_Lastname);
+            _Validation = new ValidationProvider(this);
+            _Validation.AddControlToValidate(TBX_Alias, Validate_TBX_Alias);
+            _Validation.AddControlToValidate(TBX_Prenom, Validate_TBX_Prénom);
+            _Validation.AddControlToValidate(TBX_Nom, Validate_TBX_Nom);
         }
 
         private void Init_UI()
         {
             CLB_joueurs.Items.Clear();
-            foreach (Joueur unjoueur in Listeprincipal)
+            foreach (Joueur unjoueur in DBGlobal.Joueurs)
             {
-                CLB_joueurs.Items.Add(unjoueur.Nom.ToString());
+                CLB_joueurs.Items.Add(unjoueur.AliasJoueur + " : " + unjoueur.Prenom + " " + unjoueur.Nom);
+            }
+        }
+
+        private void Ajouter_Joueur()
+        {
+            Joueur lejoueur1 = new Joueur();
+            lejoueur1.Nom = TBX_Nom.Text;
+            lejoueur1.Prenom = TBX_Prenom.Text;
+            lejoueur1.AliasJoueur = TBX_Alias.Text;
+
+            DBGlobal.Joueurs.Add(lejoueur1);
+            Init_UI();
+
+            lejoueur1.Ajouter();
+        }
+
+        private void Supprimer_Joueur()
+        {
+            Joueur lejoueur = DBGlobal.Joueurs.Find(j => j.AliasJoueur == CLB_joueurs.SelectedItem.ToString().Split(' ')[0]);
+
+            if (MessageBox.Show(lejoueur.AliasJoueur + " va être supprimer de façon permanente, êtes-vous certain ?",
+                "Confirmer Suppression Joueur", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                DBGlobal.Joueurs.Remove(lejoueur);
+                Init_UI();
+
+                lejoueur.Supprimer();
             }
         }
 
         #region Validation
 
-        private bool Validate_TBX_nom(ref string message)
+        private bool Validate_TBX_Alias(ref string message)
         {
-            message = "Alias manquant";
-            return !string.IsNullOrWhiteSpace(TBX_Nom.Text);
+            bool existeDeja = DBGlobal.Joueurs.Find(j => j.AliasJoueur == TBX_Alias.Text) != null;
+            message = existeDeja ? "Veuillez choisir un autre alias, " + TBX_Alias.Text + " est déjà en utilisation" : "Alias manquant";
+
+            return !string.IsNullOrWhiteSpace(TBX_Alias.Text) && !existeDeja;
         }
 
         private bool Validate_TBX_Prénom(ref string message)
         {
-            message = "¨prénom manquant";
-            return !string.IsNullOrWhiteSpace(TBX_Prénom.Text);
+            message = "Prénom manquant";
+            return !string.IsNullOrWhiteSpace(TBX_Prenom.Text);
         }
 
-        private bool Validate_TBX_Lastname(ref string message)
+        private bool Validate_TBX_Nom(ref string message)
         {
             message = "Nom de famille manquant";
-            return !string.IsNullOrWhiteSpace(TBX_Lastname.Text);
+            return !string.IsNullOrWhiteSpace(TBX_Nom.Text);
         }
 
         #endregion
-        private void TBX_Prénom_TextChanged(object sender, EventArgs e)
+
+        private void TBX_TextChanged(object sender, EventArgs e)
         {
-           BTN_Ajouter.Enabled =  validation.FormValid();
+           BTN_Ajouter.Enabled =  _Validation.FormValid();
         }
-
-        private void TBX_Lastname_TextChanged(object sender, EventArgs e)
-        {
-            BTN_Ajouter.Enabled = validation.FormValid();
-        }
-
-        private void TBX_Nom_TextChanged(object sender, EventArgs e)
-        {
-            BTN_Ajouter.Enabled = validation.FormValid();
-        }
-
-
-
-
 
         private void BTN_Accepter_Click(object sender, EventArgs e)
         {
-            List<Joueur> Temporaire = new List<Joueur>();
-            foreach (object itemChecked in CLB_joueurs.CheckedItems)
+            if (CLB_joueurs.CheckedItems.Count >= Joueur.NB_JOUEURS_MIN)
             {
-                for (int i = 0; i < Listeprincipal.Count; i++)
+                foreach (var itemChecked in CLB_joueurs.CheckedItems)
                 {
-                    if (itemChecked.ToString() == Listeprincipal[i].AliasJoueur)
-                    {
-                        Temporaire.Add(Listeprincipal[i]);
-                    }
+                    Listeprincipal.Add(DBGlobal.Joueurs.Find(j => j.AliasJoueur == itemChecked.ToString().Split(' ')[0]));
                 }
+
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
-            Listeprincipal = Temporaire;
-            this.Close();
+            else
+            {
+                MessageBox.Show("Il doit y avoir " + Joueur.NB_JOUEURS_MIN + " joueurs au minimum par partie",
+                    "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void BTN_Ajouter_Click(object sender, EventArgs e)
         {
             Ajouter_Joueur();
+            TBX_Alias.Clear();
+            TBX_Nom.Clear();
+            TBX_Prenom.Clear();
         }
 
         private void BTN_supprimer_Click(object sender, EventArgs e)
@@ -113,49 +132,21 @@ namespace TP2_Base_de_données
             Supprimer_Joueur();
         }
 
-        private void Ajouter_Joueur()
-        {
-            Joueur lejoueur1 = new Joueur();
-            lejoueur1.Nom = TBX_Lastname.Text;
-            lejoueur1.Prenom = TBX_Prénom.Text;
-            lejoueur1.AliasJoueur = TBX_Nom.Text;
-            lejoueur1.Ajouter();
-            DBGlobal.Joueurs.Add(lejoueur1);
-            CLB_joueurs.Items.Add(lejoueur1.AliasJoueur);
-
-        }
-        private void Supprimer_Joueur()
-        {
-            Joueur lejoueur = new Joueur();
-            lejoueur.AliasJoueur = CLB_joueurs.SelectedItem.ToString();
-            lejoueur.Supprimer();
-            Init_UI();
-        }
-
-       
-
         private void CLB_joueurs_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (CLB_joueurs.SelectedItems.Count == 1)
+            if (e.NewValue == CheckState.Checked && CLB_joueurs.CheckedItems.Count == Joueur.NB_JOUEURS_MAX)
             {
-                BTN_supprimer.Enabled = true;
+                e.NewValue = CheckState.Unchecked;
+                MessageBox.Show("Il ne peut y avoir que " + Joueur.NB_JOUEURS_MAX + " joueurs au maximum par partie",  
+                    "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
-            {
-                BTN_supprimer.Enabled = false;
-            }
+                
+            BTN_supprimer.Enabled = (CLB_joueurs.SelectedItems.Count == 1);
         }
 
         private void CLB_joueurs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CLB_joueurs.SelectedItems.Count == 1)
-            {
-                BTN_supprimer.Enabled = true;
-            }
-            else
-            {
-                BTN_supprimer.Enabled = false;
-            }
+            BTN_supprimer.Enabled = (CLB_joueurs.SelectedItems.Count == 1);
         }
     }
 }

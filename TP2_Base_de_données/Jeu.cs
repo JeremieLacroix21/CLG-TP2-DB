@@ -64,11 +64,11 @@ namespace TP2_Base_de_données
         /// <summary>Sera null tant qu'aucun joueur n'aura gagné la partie</summary>
         public Joueur Gagnant { get; private set; }
 
-        public Jeu(List<Joueur> laliste)
+        public Jeu()
         {
             InitializeComponent();
 
-            Participants = laliste;
+            Participants = new List<Joueur>();
             _FormPoints = new DLG_Points();
             _FormStats = new DLG_Stats();
         }
