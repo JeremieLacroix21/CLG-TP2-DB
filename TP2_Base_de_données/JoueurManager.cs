@@ -17,11 +17,13 @@ namespace TP2_Base_de_données
     {
 
         private ValidationProvider validation;
-        public static List<Joueur> LISTEPRINCIPAL_;
+        public List<Joueur> Listeprincipal;
 
-        public JoueurManager()
+
+        public JoueurManager(List<Joueur> part)
         {
             InitializeComponent();
+            Listeprincipal = part;
         }
 
         private void JoueurManager_Load(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace TP2_Base_de_données
         private void Init_UI()
         {
             CLB_joueurs.Items.Clear();
-            foreach (Joueur unjoueur in DBGlobal.Joueurs)
+            foreach (Joueur unjoueur in Listeprincipal)
             {
                 CLB_joueurs.Items.Add(unjoueur.Nom.ToString());
             }
@@ -86,6 +88,18 @@ namespace TP2_Base_de_données
 
         private void BTN_Accepter_Click(object sender, EventArgs e)
         {
+            List<Joueur> Temporaire = new List<Joueur>();
+            foreach (object itemChecked in CLB_joueurs.CheckedItems)
+            {
+                for (int i = 0; i < Listeprincipal.Count; i++)
+                {
+                    if (itemChecked.ToString() == Listeprincipal[i].AliasJoueur)
+                    {
+                        Temporaire.Add(Listeprincipal[i]);
+                    }
+                }
+            }
+            Listeprincipal = Temporaire;
             this.Close();
         }
 
@@ -121,6 +135,18 @@ namespace TP2_Base_de_données
        
 
         private void CLB_joueurs_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (CLB_joueurs.SelectedItems.Count == 1)
+            {
+                BTN_supprimer.Enabled = true;
+            }
+            else
+            {
+                BTN_supprimer.Enabled = false;
+            }
+        }
+
+        private void CLB_joueurs_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CLB_joueurs.SelectedItems.Count == 1)
             {

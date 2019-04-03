@@ -14,9 +14,12 @@ namespace TP2_Base_de_données
 {
     public partial class Start : Form
     {
+
+        
         private List<Joueur> Participants;
         public Start()
         {
+           
             InitializeComponent();
             Participants = new List<Joueur>();
         }
@@ -33,7 +36,7 @@ namespace TP2_Base_de_données
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Jeu lemain = new Jeu();
+            Jeu lemain = new Jeu(Participants);
             lemain.Participants.AddRange(Participants.ToArray());
             lemain.ShowDialog();
         }
@@ -46,7 +49,8 @@ namespace TP2_Base_de_données
 
         private void BTN_Configurerjoueur_Click(object sender, EventArgs e)
         {
-            JoueurManager manager = new JoueurManager();
+            JoueurManager manager = new JoueurManager(Participants);
+            Participants = manager.Listeprincipal;
             manager.Show();
         }
     }

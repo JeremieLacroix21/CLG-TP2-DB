@@ -64,11 +64,11 @@ namespace TP2_Base_de_données
         /// <summary>Sera null tant qu'aucun joueur n'aura gagné la partie</summary>
         public Joueur Gagnant { get; private set; }
 
-        public Jeu()
+        public Jeu(List<Joueur> laliste)
         {
             InitializeComponent();
 
-            Participants = new List<Joueur>();
+            Participants = laliste;
             _FormPoints = new DLG_Points();
             _FormStats = new DLG_Stats();
         }
@@ -101,7 +101,7 @@ namespace TP2_Base_de_données
         private void InitJoueurs()
         {
             // Ajouter les joueurs à l'interface
-            foreach(var joueur in Participants)
+            foreach(Joueur joueur in Participants)
             {
                 LJ_Participants.Add(joueur, BTN_Points_Click, BTN_Stats_Click);
             }
