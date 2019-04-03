@@ -18,7 +18,6 @@ namespace TP2_Base_de_données
 
         public Start()
         {
-           
             InitializeComponent();
             Participants = new List<Joueur>();
         }

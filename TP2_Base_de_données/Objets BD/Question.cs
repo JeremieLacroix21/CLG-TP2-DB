@@ -14,14 +14,22 @@ namespace Objets_BD
         /// <summary>Le nombre de points gagnés par bonne réponse</summary>
         public const int POINTS_REPONSE = 1;
 
+        private Reponse[] _Reponses { get; set; }
+
         public string NumQuestion { get; private set; }
         public string Enonce { get; set; }
         public Categorie Categorie { get; set; }
-        public Reponse[] Reponses { get; set; }
+        public Reponse[] Reponses { get => _Reponses; set => SetReponses(value); }
 
         public Question()
         {
-            Reponses = new Reponse[NB_REPONSES];
+            _Reponses = new Reponse[NB_REPONSES];
+        }
+
+        private void SetReponses(Reponse[] valeur)
+        {
+            _Reponses = valeur;
+            _Reponses = _Reponses.OrderBy(r => r.NumReponse).ToArray();
         }
 
         #region Requêtes BD
@@ -50,6 +58,7 @@ namespace Objets_BD
                         Question = this
                     };
                 }
+                Reponses = Reponses.OrderBy(r => r.NumReponse).ToArray();
                 reader.Close();
             }
             catch (Exception sqlExcept)
@@ -150,6 +159,7 @@ namespace Objets_BD
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
+
                 while(reader.Read())
                 {
                     resultat = new Question() { NumQuestion = reader.GetString(0), Enonce = reader.GetString(1), Categorie = categorie };

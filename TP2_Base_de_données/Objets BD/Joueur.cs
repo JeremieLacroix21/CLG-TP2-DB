@@ -83,7 +83,8 @@ namespace Objets_BD
         /// </summary>
         public void AjouterPointage(Categorie seraAssociee, int pointageInitial = 0)
         {
-            _Pointage.Add(seraAssociee, pointageInitial);
+            if (!_Pointage.ContainsKey(seraAssociee))
+                _Pointage.Add(seraAssociee, pointageInitial);
         }
 
         /// <summary>

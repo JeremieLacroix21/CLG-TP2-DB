@@ -100,6 +100,7 @@ namespace TP2_Base_de_données
 
         private void InitJoueurs()
         {
+            DBGlobal.InitPointages();
             // Ajouter les joueurs à l'interface
             foreach(Joueur joueur in Participants)
             {
@@ -213,7 +214,8 @@ namespace TP2_Base_de_données
                 Participants.Sort();
                 LAB_PremierRang.Text = string.Format(FORMAT_CLASSEMENT, "1er", Participants[0].AliasJoueur, Participants[0].CalculerPointageTotal(), DBGlobal.MAX_POINTS_TOTAL);
                 LAB_DeuxiemeRang.Text = string.Format(FORMAT_CLASSEMENT, "2e", Participants[1].AliasJoueur, Participants[1].CalculerPointageTotal(), DBGlobal.MAX_POINTS_TOTAL);
-                LAB_TroisiemeRang.Text = string.Format(FORMAT_CLASSEMENT, "3e", Participants[2].AliasJoueur, Participants[2].CalculerPointageTotal(), DBGlobal.MAX_POINTS_TOTAL);
+                if (Participants.Count > 2)
+                    LAB_TroisiemeRang.Text = string.Format(FORMAT_CLASSEMENT, "3e", Participants[2].AliasJoueur, Participants[2].CalculerPointageTotal(), DBGlobal.MAX_POINTS_TOTAL);
             }
             else
             {
@@ -230,6 +232,7 @@ namespace TP2_Base_de_données
             P_Roue.BackColor = aucuneCategorie ? SystemColors.Control : categorie.Couleur;
             LAB_NomCatRoue.BackColor = aucuneCategorie ? SystemColors.Control : categorie.Couleur;
             LAB_NomCatRoue.Text = aucuneCategorie ? "????" : categorie.Nom;
+            Refresh();
         }
 
         private void UpdateInfosVisible()
