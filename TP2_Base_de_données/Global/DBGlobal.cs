@@ -43,7 +43,7 @@ namespace Global
                 Categories = Categorie.ChargerToutes();
                 MAX_POINTS_TOTAL = Categories.Count * Categorie.GAGNER_NBPOINTS;
                 Joueurs = Joueur.ChargerTous();
-                InitPointage();
+                InitPointages();
                 WaitSplash.Hide();
             }
             catch (Exception exception)
@@ -52,7 +52,7 @@ namespace Global
             }
         }
 
-        private static void InitPointage()
+        public static void InitPointages()
         {
             foreach (var categorie in Categories)
             {

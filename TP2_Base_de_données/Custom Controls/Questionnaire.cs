@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Objets_BD;
 using System.Drawing;
+using System.Linq;
 
 namespace Custom_Controls
 {

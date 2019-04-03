@@ -9,6 +9,8 @@ namespace Objets_BD
 {
     public class Joueur : IComparable<Joueur>
     {
+        public const int NB_JOUEURS_MAX = 4, NB_JOUEURS_MIN = 2;
+
         private Dictionary<Categorie, int> _Pointage { get; set; }
 
         #region Éléments de PointageChange(EventHandler)
@@ -81,7 +83,8 @@ namespace Objets_BD
         /// </summary>
         public void AjouterPointage(Categorie seraAssociee, int pointageInitial = 0)
         {
-            _Pointage.Add(seraAssociee, pointageInitial);
+            if (!_Pointage.ContainsKey(seraAssociee))
+                _Pointage.Add(seraAssociee, pointageInitial);
         }
 
         /// <summary>
@@ -243,8 +246,10 @@ namespace Objets_BD
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
-                reader.Read();
-                resultat = DBGlobal.Categories.Find(c => c.CodeCategorie == reader.GetString(0));
+                while(reader.Read())
+                {
+                    resultat = DBGlobal.Categories.Find(c => c.CodeCategorie == reader.GetString(0));
+                }
                 reader.Close();
             }
             catch (Exception sqlExcept)
