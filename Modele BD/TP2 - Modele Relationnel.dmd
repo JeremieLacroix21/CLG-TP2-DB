@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="TP2 - Modele Relationnel" id="B370A98C-A6F3-3A5E-B33D-0AD0B6DCD145" version="3.5">
-<createdBy>201732860</createdBy>
-<createdTime>2019-03-27 18:20:52 UTC</createdTime>
-<ownerDesignName>TP2 - Modele Relationnel</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>B370A98C-A6F3-3A5E-B33D-0AD0B6DCD145</designId>
-</OSDM_Design>

@@ -11,7 +11,7 @@ namespace Objets_BD
     public class Categorie
     {
         /// <summary>Le nombre de points nécessaires pour gagner une catégorie</summary>
-        public const int GAGNER_NBPOINTS = 5;
+        public const int GAGNER_NBPOINTS = 2;
 
         public string CodeCategorie { get; set; }
         public string Nom { get; set; }

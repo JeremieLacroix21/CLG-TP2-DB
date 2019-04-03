@@ -58,7 +58,7 @@ namespace Objets_BD
                         Question = this
                     };
                 }
-                Reponses = Reponses.OrderBy(r => r.NumReponse).ToArray();
+                _Reponses = Reponses.OrderBy(r => r.NumReponse).ToArray();
                 reader.Close();
             }
             catch (Exception sqlExcept)
