@@ -105,7 +105,7 @@ namespace Objets_BD
                 OracleCommand command = new OracleCommand("GESTIONQUESTIONS.InsertQuestion", DBGlobal.Connexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddRange(
-                    new OracleParameter("P_numQuestion", OracleDbType.Varchar2, 20, ParameterDirection.InputOutput),
+                    new OracleParameter("P_numQuestion", OracleDbType.Varchar2, 20, OracleCollectionType.None, ParameterDirection.InputOutput),
                     new OracleParameter("P_enonce", OracleDbType.Clob, this.Enonce, ParameterDirection.Input),
                     new OracleParameter("P_codeCategorie", OracleDbType.Char, 1, this.Categorie.CodeCategorie, ParameterDirection.Input)
                 );
