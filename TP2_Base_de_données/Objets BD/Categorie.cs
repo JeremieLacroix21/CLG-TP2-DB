@@ -17,6 +17,11 @@ namespace Objets_BD
         public string Nom { get; set; }
         public Color Couleur { get; set; }
 
+        public override string ToString()
+        {
+            return Nom;
+        }
+
         #region Requêtes BD
         /// <summary>
         /// Remet le flag gagnee pour chaque catégorie pour chaque joueur à false

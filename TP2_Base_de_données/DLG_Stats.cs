@@ -45,6 +45,13 @@ namespace TP2_Base_de_données
                 this.Hide();
         }
 
+        private void UpdatePointsJoueur(object sender, EventArgs e)
+        {
+            UpdateScoreCourant();
+            UpdateForces();
+            UpdateScoreGlobal();
+        }
+
         private void UpdateInfosJoueur()
         {
             LAB_Alias.Text = SeraAfficher.AliasJoueur;
@@ -52,16 +59,10 @@ namespace TP2_Base_de_données
             LAB_Prenom.Text = SeraAfficher.Prenom;
         }
 
-        private void UpdatePointsJoueur(object sender, EventArgs e)
+        private void UpdateScoreGlobal()
         {
             Dictionary<Categorie, int> scoresDuJoueur = _SeraAfficher.GetScores();
-            int maxScore = scoresDuJoueur.Max().Value;
-
-            LAB_CatForte.Text = _SeraAfficher.GetCategorieForce(false).Nom;
-            LAB_CatFaible.Text = _SeraAfficher.GetCategorieForce(true).Nom;
-
-            List<Categorie> catGagnees = _SeraAfficher.GetCategoriesGagnees_Local();
-            DUD_Gagnees.Items.AddRange(catGagnees);
+            int maxScore = (scoresDuJoueur.Count > 0) ? scoresDuJoueur.Max().Value : 0;
 
             foreach (var categorie in DBGlobal.Categories)
             {
@@ -71,16 +72,28 @@ namespace TP2_Base_de_données
 
                 pbPoints.Value = 0;
                 labPoints.Text = "0";
-                pbPoints.Maximum = maxScore;
-                if (scoresDuJoueur.ContainsKey(categorie))
-                {
+                if (scoresDuJoueur.ContainsKey(categorie)) {
+                    pbPoints.Maximum = maxScore;
                     pbPoints.Value = scoresDuJoueur[categorie];
                     labPoints.Text = scoresDuJoueur[categorie].ToString();
                 }
-
-                if (!catGagnees.Contains(categorie))
-                    DUD_AGagner.Items.Add(categorie);
             }
+        }
+
+        private void UpdateScoreCourant()
+        {
+            List<Categorie> catGagnees = _SeraAfficher.GetCategoriesGagnees_Local();
+            List<Categorie> catNonGagnees = DBGlobal.Categories.Where(c => !catGagnees.Contains(c)).ToList();
+            DUD_Gagnees.Items.AddRange(catGagnees);
+            DUD_AGagner.Items.AddRange(catNonGagnees);
+        }
+
+        private void UpdateForces()
+        {
+            Categorie forte = _SeraAfficher.GetCategorieForce(false);
+            Categorie faible = _SeraAfficher.GetCategorieForce(true);
+            LAB_CatForte.Text = (forte != null) ? forte.Nom : "Aucune";
+            LAB_CatFaible.Text = (faible != null) ? faible.Nom : "Aucune";
         }
     }
 }

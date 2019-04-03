@@ -193,6 +193,7 @@ namespace TP2_Base_de_données
                     _EnTrainDeJouer.IncrScore(_CategorieEnJeu);
 
                 MessageBox.Show("Bonne réponse!");
+                Q_Questionnaire.ARepondre.Repondre();
                 DebloquerRoue();
             }
             else
@@ -265,9 +266,12 @@ namespace TP2_Base_de_données
         private void Jeu_FormClosing(object sender, FormClosingEventArgs e)
         {
             TIMER_PanneauInfo.Stop();
+            TIMER_Roue.Stop();
 
             _FormPoints.SeraAfficher = null;
             _FormPoints.Close();
+            _FormStats.SeraAfficher = null;
+            _FormStats.Close();
 
             foreach (var joueur in Participants)
             {

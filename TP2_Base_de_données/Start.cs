@@ -18,12 +18,17 @@ namespace TP2_Base_de_données
         public Start()
         {
             InitializeComponent();
+            Participants = new List<Joueur>();
         }
 
         private void Start_Load(object sender, EventArgs e)
         {
             DBGlobal.OuvrirConnexion(this);
-            Participants = DBGlobal.Joueurs;
+            // TODO : Enlever ça et ne pas permettre de commencer la partie si des joueurs n'ont pas été assigné
+            for (int i = 0; i < 4; ++i) 
+            {
+                Participants.Add(DBGlobal.Joueurs[i]);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -150,8 +150,10 @@ namespace Objets_BD
                 );
 
                 OracleDataReader reader = command.ExecuteReader();
-                reader.Read();
-                resultat = new Question() { NumQuestion = reader.GetString(0), Enonce = reader.GetString(1), Categorie = categorie };
+                while(reader.Read())
+                {
+                    resultat = new Question() { NumQuestion = reader.GetString(0), Enonce = reader.GetString(1), Categorie = categorie };
+                }
                 reader.Close();
 
                 resultat.ChargerReponses();
