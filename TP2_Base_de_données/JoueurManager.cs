@@ -105,7 +105,6 @@ namespace TP2_Base_de_données
 
         private void BTN_Ajouter_Click(object sender, EventArgs e)
         {
-            
                 Ajouter_Joueur();
         }
 
@@ -122,6 +121,7 @@ namespace TP2_Base_de_données
             lejoueur1.AliasJoueur = TBX_Nom.Text;
             lejoueur1.Ajouter();
             DBGlobal.Joueurs.Add(lejoueur1);
+            Init_UI();
 
         }
         private void Supprimer_Joueur()
