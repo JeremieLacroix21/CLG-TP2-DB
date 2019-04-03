@@ -40,7 +40,7 @@ namespace TP2_Base_de_données
         private void Init_UI()
         {
             CLB_joueurs.Items.Clear();
-            foreach (Joueur unjoueur in Listeprincipal)
+            foreach (Joueur unjoueur in DBGlobal.Joueurs)
             {
                 CLB_joueurs.Items.Add(unjoueur.Nom.ToString());
             }
@@ -105,7 +105,8 @@ namespace TP2_Base_de_données
 
         private void BTN_Ajouter_Click(object sender, EventArgs e)
         {
-            Ajouter_Joueur();
+            
+                Ajouter_Joueur();
         }
 
         private void BTN_supprimer_Click(object sender, EventArgs e)
@@ -121,7 +122,6 @@ namespace TP2_Base_de_données
             lejoueur1.AliasJoueur = TBX_Nom.Text;
             lejoueur1.Ajouter();
             DBGlobal.Joueurs.Add(lejoueur1);
-            CLB_joueurs.Items.Add(lejoueur1.AliasJoueur);
 
         }
         private void Supprimer_Joueur()

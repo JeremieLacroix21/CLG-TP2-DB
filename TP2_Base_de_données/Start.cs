@@ -27,17 +27,14 @@ namespace TP2_Base_de_données
         private void Start_Load(object sender, EventArgs e)
         {
             DBGlobal.OuvrirConnexion(this);
-            // TODO : Enlever ça et ne pas permettre de commencer la partie si des joueurs n'ont pas été assigné
-            for (int i = 0; i < 4; ++i) 
-            {
-                Participants.Add(DBGlobal.Joueurs[i]);
-            }
+            
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Jeu lemain = new Jeu(Participants);
-            lemain.Participants.AddRange(Participants.ToArray());
+            //lemain.Participants.AddRange(Participants.ToArray());
             lemain.ShowDialog();
         }
 
