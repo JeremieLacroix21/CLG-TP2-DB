@@ -121,6 +121,8 @@ namespace TP2_Base_de_données
 
         private void BTN_Ajouter_Click(object sender, EventArgs e)
         {
+            
+
             Ajouter_Joueur();
             TBX_Alias.Clear();
             TBX_Nom.Clear();
@@ -131,6 +133,7 @@ namespace TP2_Base_de_données
         {
             Supprimer_Joueur();
         }
+
 
         private void CLB_joueurs_ItemCheck(object sender, ItemCheckEventArgs e)
         {
